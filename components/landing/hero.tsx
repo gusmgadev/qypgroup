@@ -29,7 +29,8 @@ export function Hero() {
 
   return (
     <section
-      className="relative h-screen overflow-hidden flex items-center justify-center"
+      className="relative min-h-screen overflow-hidden flex items-center justify-center"
+      style={{ paddingTop: "140px", paddingBottom: "60px" }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -59,22 +60,26 @@ export function Hero() {
         style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
       />
 
-      <div className="relative z-10 max-w-[680px] text-center px-4 md:px-12">
+      <div className="relative z-10 max-w-[680px] text-center px-6 md:px-12">
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+          className="flex items-center justify-center gap-3 px-8 py-3 rounded-full mb-8"
           style={{
             backgroundColor: "rgba(255,255,255,0.08)",
             border: "0.5px solid rgba(255,255,255,0.2)",
+            width: "110%",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-sm text-white">{theme.hero.tag}</span>
+          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ animation: "colorPulse 1.5s ease-in-out infinite" }} />
+          <span className="text-xs md:text-sm text-white whitespace-nowrap">{theme.hero.tag}</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
           <span className="text-white">{theme.hero.title.split(theme.hero.titleHighlight)[0]}</span>
           <br />
           <span
+            className="text-2xl md:text-3xl lg:text-4xl"
             style={{ color: theme.colors.accent }}
           >
             {theme.hero.titleHighlight}
@@ -114,13 +119,14 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-3">
+      <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3">
         {theme.hero.pills.map((pill, index) => {
           const IconComponent = iconMap[pill.icon] || iconMap.truck
           return (
-            <div
+            <Link
+              href="#services"
               key={index}
-              className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite]"
+              className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite] cursor-pointer"
               style={{
                 backgroundColor: "rgba(255,255,255,0.10)",
                 backdropFilter: "blur(8px)",
@@ -138,7 +144,7 @@ export function Hero() {
                 <div className="text-sm font-semibold">{pill.title}</div>
                 <div className="text-xs text-white/60">{pill.subtitle}</div>
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>
@@ -163,6 +169,10 @@ export function Hero() {
         @keyframes floatUp {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-10px); }
+        }
+        @keyframes colorPulse {
+          0%, 100% { background-color: #F47920; box-shadow: 0 0 8px #F47920; }
+          50% { background-color: #22c55e; box-shadow: 0 0 12px #22c55e; }
         }
       `}</style>
     </section>

@@ -39,8 +39,8 @@ export function Services() {
             className="mt-4 max-w-2xl mx-auto"
             style={{ color: theme.colors.textMuted }}
           >
-            Especialistas en equipos de izaje e integración vehicular, 
-            ofreciendo soluciones llave en mano para cada necesidad.
+            en las etapas del proceso de extracción, producción, transporte y almacenaje 
+          
           </p>
         </div>
 

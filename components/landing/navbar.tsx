@@ -60,7 +60,7 @@ export function Navbar() {
             <div
               className="flex items-center justify-center"
               style={{
-                backgroundColor: "#FFFFFF",
+backgroundColor: "#FFFFFF",
                 borderRadius: "9999px",
                 padding: "16px",
                 width: "96px",
@@ -84,14 +84,18 @@ export function Navbar() {
                 <Link
                   key={item}
                   href={href}
-                  className="px-5 py-2 rounded-full text-base font-medium transition-colors duration-200 hover:text-white"
+                  className="group px-5 py-2 text-base font-medium relative"
                   style={{ color: "rgba(255,255,255,0.70)" }}
                 >
-                  {item}
+                  <span className="relative z-10 transition-colors duration-200 group-hover:text-white">{item}</span>
+                  <span 
+                    className="absolute bottom-0 left-0 w-full h-0.5 scale-x-0 transition-transform duration-200 origin-left group-hover:scale-x-100"
+                    style={{ backgroundColor: theme.colors.accent }}
+                  />
                 </Link>
-              )
-            })}
-          </div>
+               )
+             })}
+           </div>
 
           <Link
             href={theme.navbar.cta.href}

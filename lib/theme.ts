@@ -100,9 +100,9 @@ export const theme = {
     slideInterval:   3000,
     slideTransition: "1s",
 
-    tag:            "INDUSTRIA PETROLERA, MINERA , GASIFERA Y PESQUERA",
-    title:          "Obras civiles e industriales",
-    titleHighlight: "Petroleo",
+    tag:            "SOLUCIONES PARA LA INDUSTRIA DE LA EXPLOTACIÓN, OIL&GAS, MINERIÍA Y PESCA",
+    title:          "Obras Servicios Tecnología",
+    titleHighlight: "Oil&Gas Mineria y Pesca",
     subtitle:       "Proveemos soluciones llave en mano, para las necesidades de la industria petrolera, minera, gasifera y pesquera de la region", 
 
     cta: {
@@ -117,20 +117,20 @@ export const theme = {
     ],
 
     pills: [
-      { title: "Construcción fosas de anclaje", subtitle: "Anclas contraviento, tanques aereos", color: "#F47920", icon: "truck" },
-      { title: "Constucción de Piletas", subtitle: "Contención de derrames", color: "#0F0F10", icon: "package" },
-      { title: "Cercos ", subtitle: "Perimetrales", color: "#1D9E75", icon: "wrench" },
+      { title: "División de obras y servicios", subtitle: "Proyectos hasta el finde obra", color: "#F47920", icon: "truck" },
+      { title: "Division I+D+I", subtitle: "Tecnología y calidad", color: "#0F0F10", icon: "package" },
+      
     ],
 services: [
       { 
         title: "División de obras y servicios", 
-        description: "Realizamos la construccion , desde el proyecto hasta el finde obra, de estructura de pequeño , mediano y gran porte. ", 
+        description: "Realizamos la construccion , de estructura de pequeño , mediano y gran porte. ", 
         icon: "truck",
         details: [
-          "Construccion de fosas de anclaje y testeo de: Anclas contraviento, Tanques aereos de almacenamiento de hidrocarburos y sus derivados bajo normas API 650 Y 620",
-          "Construccion de piletas para contencion de derrames",
+          "Construccion de fosas de anclaje y testeo",
+          "Construccion de piletas para contencion",
           "Cercos perimetrales",
-          "Limpieza de Locaciones con certificado de deposicón final",
+          "Limpieza de Locaciones",
           "Equipos porta-contenedores y contenedores"
         ]
       },
@@ -139,8 +139,9 @@ services: [
         description: "Un equipo de especialistas le ofrece la mas avanzada tecnología y calidad", 
         icon: "package",
         details: [
-          "Mantenimiento y reparacion de equipos: Manometros, registradores de presion diferencia y temperatura, separadores, controladores de neumaticos. Sistemas integrales de control, calibracion y programacion",
-          "Sensores de locación: Peso de las herramientas, Torque de mesa, R.P.M, Presión de bomba, Avance de trepano y nivel de pileta"
+          "Mantenimiento y reparacion de equipos",
+          "Sistemas integrales de control, calibracion y programacion",
+          "Sensores de locación"
         ]
       },
     ],
