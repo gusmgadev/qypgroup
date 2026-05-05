@@ -96,9 +96,9 @@ export const theme = {
     height:          "100vh",
     heightMobile:    "90vh",
     overlayOpacity:  0.75,
-    blurAmount:      "4px",
+    blurAmount:      "0px",
     slideInterval:   3000,
-    slideTransition: "1s",
+    slideTransition: "1.2s",
 
     tag:            "SOLUCIONES PARA LA INDUSTRIA DE LA EXPLOTACIÓN, OIL&GAS, MINERIÍA Y PESCA",
     title:          "Obras Servicios Tecnología",
