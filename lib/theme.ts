@@ -168,11 +168,9 @@ services: [
       terms:   "/terminos",
     },
 
-    services: [
-      { label: "Division obras y servicios", href: "#services" },
-      { label: "Mantenimeintyo y reparacion de equipos",       href: "#services" },
-     
-      ,
+services: [
+      { label: "División obras y servicios", href: "#services" },
+      { label: "Mantenimiento y reparación", href: "#services" },
     ],
 
     nav: [
