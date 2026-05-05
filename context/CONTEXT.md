@@ -1,4 +1,4 @@
-# CONTEXT.md — QYP Group
+# CONTEXT.md — QYP Group (Tecnosur Group)
 
 > **Cómo usar este archivo:**
 > 1. Copiarlo a la raíz de cada proyecto nuevo
@@ -18,9 +18,9 @@
 - **Cliente:** Tecnosur Group
 - **Rubro:** Servicios industriales - Hidrogrúas, 3er Eje y Carrocerías
 - **Objetivo:** Landing page para empresa de servicios industriales
-- **URL producción:** sin deploy aún
+- **URL producción:** https://qypgroup.vercel.app
 - **Fecha inicio:** 2026
-- **Estado:** Etapa 1 - Landing en desarrollo
+- **Estado:** Etapa 1 - Landing completa
 
 ---
 
@@ -58,8 +58,8 @@ Siempre importar: `import { theme } from '@/lib/theme'`
 - **Email:** No implementado
 - **Animaciones:** CSS/Tailwind (sin Framer Motion)
 - **Iconos:** Lucide React + SVGs inline
-- **Formularios:** No implementado
-- **Deploy:** Vercel / sin configurar
+- **Formularios:** Implementado (sin backend)
+- **Deploy:** Vercel
 
 ---
 
@@ -75,6 +75,7 @@ qypgroup/
 │       ├── navbar.tsx             # Template 2 - Glassmorphism flotante
 │       ├── hero.tsx               # Template 3 - Fullscreen centrado
 │       ├── services.tsx           # Cards de servicios expandibles
+│       ├── contact.tsx            # Formulario de contacto
 │       └── footer.tsx             # Template 3 - Banda CTA + minimalista
 │
 ├── lib/
@@ -82,7 +83,7 @@ qypgroup/
 │
 ├── context/
 │   ├── CONTEXT.md                 # Este archivo
-│   ├── Biblioteca-Navbar.md       # Templates de navbar
+│   ├── Biblioteca-Navbar.md      # Templates de navbar
 │   ├── Biblioteca-Hero.md         # Templates de hero
 │   └── Biblioteca-Footer.md       # Templates de footer
 │
@@ -98,9 +99,10 @@ qypgroup/
 
 | Componente   | Template | Descripción |
 |--------------|----------|-------------|
-| Navbar       | 2        | Glassmorphism flotante, hide on scroll |
-| Hero         | 3        | Fullscreen centrado con pills flotantes |
-| Servicios    | Custom   | Cards con detalles visibles, expandibles |
+| Navbar       | 2        | Glassmorphism flotante, hide on scroll, hover con subrayado |
+| Hero         | 3        | Fullscreen centrado con tag amplio, pills flotantes clickeables |
+| Servicios    | Custom   | Cards con detalles siempre visibles |
+| Contacto     | Custom   | Formulario + info contacto + mapa |
 | Footer       | 3        | Banda CTA + 4 columnas |
 
 ---
@@ -108,14 +110,19 @@ qypgroup/
 ## Funcionalidades implementadas
 
 - [x] Navbar flotante con logo en círculo blanco
-- [x] Hero con slideshow de imágenes
+- [x] Navbar con hover: color cambia a blanco + subrayado naranja
+- [x] Navbar hide on scroll (oculta al bajar, muestra al subir)
+- [x] Hero responsive (min-h-screen, padding para no superponer navbar)
+- [x] Tag amplio (width 110%) con dot animado (naranja → verde)
+- [x] Pills flotantes clickeables que van a #services
+- [x] TitleHighlight más pequeño que el resto del título
 - [x] Sección servicios con cards
+- [x] Servicios con detalles siempre visibles
+- [x] Formulario de contacto
 - [x] Footer con banda CTA
-- [x] Google Maps integrado
-- [x] Responsive design
-- [ ] Formulario de contacto
-- [ ] SEO
-- [ ] Deploy
+- [x] Google Maps嵌入
+- [x] Responsive design completo
+- [x] Deploy en Vercel
 
 ---
 
@@ -123,19 +130,14 @@ qypgroup/
 
 ### Crítico
 
-1. Agregar formulario de contacto
-2. SEO base (metadata)
-
-### Próxima sesión
-
-- Agregar sección "Proceso" o "Clientes"
-- Ajustar responsive en mobile
+- Ninguno
 
 ### Backlog
 
-- Animaciones adicionales
-- Galerías de trabajos realizados
+- Integrar formulario con backend (email)
+- Sección "Clientes" o "Proyectos"
 - WhatsApp flotante
+- SEO completo
 
 ---
 
@@ -157,7 +159,9 @@ qypgroup/
 - Colores: primary=#0F0F10 (negro), accent=#F47920 (naranja)
 - Logo en círculo blanco en navbar oscuro
 - Hero oscuro con overlay gradiente
-- Servicios con detalles siempre visibles
+- Tag con animación de color (naranja → verde)
+- Pills del hero son clickeables
+- Formulario con validación frontend
 - Mapa de Google Maps嵌入
 
 ---
