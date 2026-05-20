@@ -120,8 +120,8 @@ export const theme = {
     ],
 
     pills: [
-      { title: "Alianzas estratégicas", subtitle: "Sumate a nuestro equipo", color: "#E8691A", icon: "truck" },
-      { title: "Sumate al staff", subtitle: "Envianos tu CV", color: "#1C1C1E", icon: "package" },
+      { title: "Alianzas estratégicas", subtitle: "Sumate a nuestro equipo", color: "#E8691A", icon: "handshake" },
+      { title: "Sumate al staff", subtitle: "Envianos tu CV", color: "#1C1C1E", icon: "userplus" },
       
     ],
 services: [

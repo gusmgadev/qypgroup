@@ -93,24 +93,33 @@ backgroundColor: "#FFFFFF",
               <Link
                 key={item.label}
                 href={item.href}
-                className="group px-5 py-2 text-lg font-semibold relative"
-                style={{ color: theme.colors.text }}
+                className="group px-5 py-1 text-lg font-semibold relative rounded-full text-[#1C1C1E] hover:text-white bg-[rgba(255,255,255,0.35)] hover:bg-[#4A4440] transition-all duration-200"
+                style={{
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                  border: "0.5px solid rgba(255, 255, 255, 0.50)",
+                  width: "140px",
+                  textAlign: "center",
+                }}
               >
-                <span className="relative z-10 transition-colors duration-200">{item.label}</span>
-                <span 
-                  className="absolute bottom-0 left-0 w-full h-0.5 scale-x-0 transition-transform duration-200 origin-left group-hover:scale-x-100"
-                  style={{ backgroundColor: theme.colors.accent }}
-                />
+                <span className="relative inline-block">
+                  <span className="relative z-10 transition-colors duration-200">{item.label}</span>
+                  <span
+                    className="absolute bottom-0 left-0 w-full h-0.5 scale-x-0 transition-transform duration-200 origin-left group-hover:scale-x-100"
+                    style={{ backgroundColor: theme.colors.accent }}
+                  />
+                </span>
               </Link>
             ))}
           </div>
 
           <Link
             href={theme.navbar.cta.href}
-            className="hidden md:block px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:scale-[1.02]"
+            className="hidden md:flex items-center justify-center px-5 py-1 rounded-full font-semibold text-lg text-white bg-[#E8691A] hover:bg-[#4A4440] transition-all duration-200 hover:scale-[1.02]"
             style={{
-              backgroundColor: theme.colors.accent,
-              color: "#FFFFFF",
+              width: "140px",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
             }}
           >
             {theme.navbar.cta.text}
