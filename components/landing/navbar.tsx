@@ -6,7 +6,12 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { theme } from "@/lib/theme"
 
-const navItems = ["Servicios", "Proceso", "Clientes", "Contacto"]
+const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Servicios", href: "#services" },
+    { label: "Proceso", href: "#process" },
+    { label: "Trabajos", href: "#trabajos" },
+  ]
 
 export function Navbar() {
   const pathname = usePathname()
@@ -36,22 +41,28 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [lastScrollY])
 
-  const getHref = (item: string) => {
-    if (item === "Servicios") return "#services"
-    if (item === "Proceso") return "#process"
-    if (item === "Clientes") return "#clientes"
-    if (item === "Contacto") return "#contact"
-    return "/"
-  }
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (e.clientY < 60) setIsHidden(false)
+    }
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
+  
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 transition-transform duration-300" style={{ transform: isHidden ? "translateY(-120%)" : "translateY(0)" }}>
+    <header
+      className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 transition-transform duration-300"
+      style={{ transform: isHidden ? "translateY(-120%)" : "translateY(0)" }}
+      onMouseLeave={() => { if (window.scrollY > 200) setIsHidden(true) }}
+    >
       <nav
         className="max-w-[1100px] w-full rounded-full transition-all duration-200"
         style={{
-          backgroundColor: isScrolled ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.08)",
-          backdropFilter: isScrolled ? "blur(16px)" : "blur(12px)",
-          border: "0.5px solid rgba(255,255,255,0.15)",
+          backgroundColor: isScrolled ? "rgba(240, 230, 140, 0.45)" : "rgba(240, 230, 140, 0.28)",
+          backdropFilter: isScrolled ? "blur(20px)" : "blur(14px)",
+          border: "0.5px solid rgba(200, 185, 80, 0.45)",
           padding: "12px 28px",
         }}
       >
@@ -77,32 +88,29 @@ backgroundColor: "#FFFFFF",
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => {
-              const href = getHref(item)
-              return (
-                <Link
-                  key={item}
-                  href={href}
-                  className="group px-5 py-2 text-base font-medium relative"
-                  style={{ color: "rgba(255,255,255,0.70)" }}
-                >
-                  <span className="relative z-10 transition-colors duration-200 group-hover:text-white">{item}</span>
-                  <span 
-                    className="absolute bottom-0 left-0 w-full h-0.5 scale-x-0 transition-transform duration-200 origin-left group-hover:scale-x-100"
-                    style={{ backgroundColor: theme.colors.accent }}
-                  />
-                </Link>
-               )
-             })}
-           </div>
+<div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group px-5 py-2 text-lg font-semibold relative"
+                style={{ color: theme.colors.text }}
+              >
+                <span className="relative z-10 transition-colors duration-200">{item.label}</span>
+                <span 
+                  className="absolute bottom-0 left-0 w-full h-0.5 scale-x-0 transition-transform duration-200 origin-left group-hover:scale-x-100"
+                  style={{ backgroundColor: theme.colors.accent }}
+                />
+              </Link>
+            ))}
+          </div>
 
           <Link
             href={theme.navbar.cta.href}
             className="hidden md:block px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:scale-[1.02]"
             style={{
-              backgroundColor: "#FFFFFF",
-              color: theme.colors.dark,
+              backgroundColor: theme.colors.accent,
+              color: "#FFFFFF",
             }}
           >
             {theme.navbar.cta.text}
@@ -111,7 +119,7 @@ backgroundColor: "#FFFFFF",
           <button
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            style={{ color: "#FFFFFF" }}
+            style={{ color: theme.colors.dark }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -121,27 +129,26 @@ backgroundColor: "#FFFFFF",
           <div
             className="md:hidden mt-2 rounded-2xl p-4"
             style={{
-              backgroundColor: "rgba(15,26,53,0.95)",
+              backgroundColor: "rgba(240, 230, 140, 0.92)",
               backdropFilter: "blur(12px)",
             }}
           >
             <div className="flex flex-col gap-2">
-              {navItems.map((item) => {
-                const href = getHref(item)
-                return (
-                  <Link
-                    key={item}
-                    href={href}
-                    className="text-white/70 hover:text-white px-4 py-3 rounded-lg hover:bg-white/10"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item}
-                  </Link>
-                )
-              })}
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="px-4 py-3 rounded-lg"
+                  style={{ color: theme.colors.dark }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
                 href={theme.navbar.cta.href}
-                className="mt-2 block text-center px-5 py-3 rounded-full font-semibold bg-white text-black"
+                className="mt-2 block text-center px-5 py-3 rounded-full font-semibold"
+                style={{ backgroundColor: theme.colors.accent, color: "#FFFFFF" }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {theme.navbar.cta.text}

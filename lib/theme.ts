@@ -7,14 +7,14 @@ export const theme = {
 
   // ── COLORES ────────────────────────────────────────────────────────────────
   colors: {
-    primary:    "#0F0F10",   // negro base (fondo dominante)
-    secondary:  "#1C1C1E",   // gris oscuro (cards, bloques)
-    accent:     "#F47920",   // naranja del logo Q&P (CTA, highlights)
-    background: "#0F0F10",   // fondo general
-    dark:       "#000000",   // negro puro (navbar / contrastes)
-    text:       "#FFFFFF",   // texto principal
-    textMuted:  "#A0A0A0",   // texto secundario
-    border:     "#2A2A2A",   // bordes sutiles dark mode
+    primary:    "#cbc58a",   // caqui — solo badges/detalles (no fondo general)
+    secondary:  "#e0dec0",   // caqui muy claro — secciones alternadas y cards
+    accent:     "#E8691A",   // naranja rico (CTA, highlights)
+    background: "#FAFAF5",   // fondo general caqui casi blanco
+    dark:       "#2A2510",   // caqui muy oscuro warm (navbar, footer CTA band)
+    text:       "#1C1C1E",   // texto principal (gris oscuro)
+    textMuted:  "#6B6642",   // texto secundario warm
+    border:     "#D8D49A",   // bordes warm visibles
     success:    "#1D9E75",   // mensajes de éxito
     error:      "#E24B4A",   // mensajes de error
     warning:    "#EF9F27",   // mensajes de advertencia
@@ -101,9 +101,9 @@ export const theme = {
     slideTransition: "1.2s",
 
     tag:            "SOLUCIONES PARA LA INDUSTRIA DE LA EXPLOTACIÓN, OIL&GAS, MINERIÍA Y PESCA",
-    title:          "Obras Servicios Tecnología",
-    titleHighlight: "Oil&Gas Mineria y Pesca",
-    subtitle:       "Proveemos soluciones llave en mano, para las necesidades de la industria petrolera, minera, gasifera y pesquera de la region", 
+    title:          "Obras y Servicios",
+    titleHighlight: "Oil &Gas Minería Rental",
+    subtitle:       "Proveemos soluciones para las necesidades de la industria petrolera, minera y gasifera", 
 
     cta: {
       primary:   { text: "Ver Servicios", href: "#services" },
@@ -111,37 +111,53 @@ export const theme = {
     },
 
     images: [
+      "/images/hero/fondo hero.jpg",
       "/images/hero/hero-1.jpg",
       "/images/hero/hero-2.jpg",
       "/images/hero/hero-3.jpg",
+      "/images/hero/hero-4.jpg",
+      "/images/hero/hero-5.jpg",
     ],
 
     pills: [
-      { title: "División de obras y servicios", subtitle: "Proyectos hasta el finde obra", color: "#F47920", icon: "truck" },
-      { title: "Division I+D+I", subtitle: "Tecnología y calidad", color: "#0F0F10", icon: "package" },
+      { title: "Alianzas estratégicas", subtitle: "Sumate a nuestro equipo", color: "#E8691A", icon: "truck" },
+      { title: "Sumate al staff", subtitle: "Envianos tu CV", color: "#1C1C1E", icon: "package" },
       
     ],
 services: [
-      { 
-        title: "División de obras y servicios", 
-        description: "Realizamos la construccion , de estructura de pequeño , mediano y gran porte. ", 
+      {
+        title: "Obras",
+        description: "Realizamos la construccion de estructuras de pequeño, mediano y gran porte.",
         icon: "truck",
+        image: "/images/servicios/obras.jpg",
         details: [
           "Construccion de fosas de anclaje y testeo",
           "Construccion de piletas para contencion",
           "Cercos perimetrales",
-          "Limpieza de Locaciones",
-          "Equipos porta-contenedores y contenedores"
+          "Limpieza de Locaciones"
         ]
       },
-      { 
-        title: "Division I+D+I", 
-        description: "Un equipo de especialistas le ofrece la mas avanzada tecnología y calidad", 
-        icon: "package",
+      {
+        title: "Servicios",
+        description: "Un equipo de especialistas le ofrece la mas avanzada tecnología y calidad.",
+        icon: "wrench",
+        image: "/images/servicios/servicios.jpg",
         details: [
           "Mantenimiento y reparacion de equipos",
           "Sistemas integrales de control, calibracion y programacion",
           "Sensores de locación"
+        ]
+      },
+      {
+        title: "Rental",
+        description: "Contamos con equipos especializados para alquiler, listos para operar.",
+        icon: "package",
+        image: "/images/servicios/rental.jpg",
+        details: [
+          "Equipos porta-contenedores",
+          "Contenedores modulares",
+          "Maquinaria pesada",
+          "Vehículos utilitarios"
         ]
       },
     ],
@@ -149,7 +165,7 @@ services: [
 
   // ── FOOTER ─────────────────────────────────────────────────────────────────
   footer: {
-    description: "Proveemos soluciones llave en mano, para las necesidades de la industria petrolera, minera, gasifera y pesquera de la region", 
+    description: "Proveemos soluciones para las necesidades de la industria petrolera, minera y gasifera", 
     copyright:   "Q&P Group 2026",
 
     social: {
@@ -170,16 +186,16 @@ services: [
     },
 
 services: [
-      { label: "División obras y servicios", href: "#services" },
-      { label: "Mantenimiento y reparación", href: "#services" },
+      { label: "Obras",     href: "#services" },
+      { label: "Servicios", href: "#services" },
+      { label: "Rental",    href: "#services" },
     ],
 
     nav: [
-      { label: "Inicio",    href: "/" },
+      { label: "Home",    href: "/" },
       { label: "Servicios", href: "#services" },
-      { label: "Clientes",  href: "#clientes" },
       { label: "Proceso",   href: "#process" },
-      { label: "Contacto",  href: "#contact" },
+      { label: "Trabajos",  href: "#trabajos" },
     ],
   },
 

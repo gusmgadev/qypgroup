@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(findstr -i tailwind)",
+      "Bash(Get-ChildItem \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\" -Filter \"tailwind.config.*\")"
+    ]
+  }
+}

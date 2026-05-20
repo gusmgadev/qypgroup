@@ -1,10 +1,8 @@
-# CONTEXT.md — QYP Group (Tecnosur Group)
+# CONTEXT.md — QYP Group
 
 > **Cómo usar este archivo:**
-> 1. Copiarlo a la raíz de cada proyecto nuevo
-> 2. Reemplazar todos los valores entre `[ ]` con los datos reales
-> 3. Al iniciar cada chat con la IA, adjuntarlo junto con `lib/theme.ts`
-> 4. Al terminar cada sesión, actualizar "Funcionalidades implementadas" y "Pendientes"
+> 1. Al iniciar cada chat con la IA, adjuntar este archivo junto con `lib/theme.ts`
+> 2. Al terminar cada sesión, actualizar "Funcionalidades implementadas" y "Pendientes"
 
 > **Regla fundamental:** Los valores de colores, tipografía, textos, logos,
 > contacto y navegación NO se escriben aquí — todos viven en `lib/theme.ts`.
@@ -14,13 +12,11 @@
 
 ## Descripción general
 
-- **Proyecto:** QYP Group (Tecnosur Group)
-- **Cliente:** Tecnosur Group
-- **Rubro:** Servicios industriales - Hidrogrúas, 3er Eje y Carrocerías
+- **Proyecto:** QYP Group
+- **Rubro:** Servicios industriales — Oil & Gas, Minería, Pesca
 - **Objetivo:** Landing page para empresa de servicios industriales
 - **URL producción:** https://qypgroup.vercel.app
-- **Fecha inicio:** 2026
-- **Estado:** Etapa 1 - Landing completa
+- **Estado:** Etapa 1 - Landing completa con diseño Refined Khaki
 
 ---
 
@@ -29,19 +25,18 @@
 **Todos los valores visuales y de contenido están en `lib/theme.ts`.**
 Antes de crear o modificar cualquier componente, adjuntar ese archivo.
 
-| Qué necesitás saber            | Dónde está en theme.ts              |
-|-------------------------------|-------------------------------------|
-| Colores de la marca            | `theme.colors.*`                    |
-| Tipografía y tamaños           | `theme.fonts.*` / `theme.fontSizes.*` |
-| Logo (claro y blanco)          | `theme.logo.*`                      |
-| Datos de contacto              | `theme.contact.*`                   |
-| Textos del Hero                | `theme.hero.*`                      |
-| Navegación y CTA del navbar    | `theme.navbar.*`                   |
-| Descripción, redes, mapa       | `theme.footer.*`                    |
-| Servicios (cards)              | `theme.hero.services.*`             |
-| Pills del hero                 | `theme.hero.pills.*`                |
+| Qué necesitás saber            | Dónde está en theme.ts                            |
+|-------------------------------|---------------------------------------------------|
+| Colores de la marca            | `theme.colors.*`                                  |
+| Tipografía y tamaños           | `theme.fonts.*` / `theme.fontSizes.*`             |
+| Logo (claro y blanco)          | `theme.logo.*`                                    |
+| Datos de contacto              | `theme.contact.*`                                 |
+| Textos del Hero                | `theme.hero.*`                                    |
+| Navegación y CTA del navbar    | `theme.navbar.*`                                  |
+| Descripción, redes, mapa       | `theme.footer.*`                                  |
+| Servicios (3 cards)            | `theme.hero.services.*` (Obras, Servicios, Rental)|
+| Pills del hero                 | `theme.hero.pills.*`                              |
 | Espaciado, radios, sombras     | `theme.spacing.*` / `theme.radii.*` / `theme.shadows.*` |
-| Transiciones                   | `theme.transitions.*`               |
 
 **Nunca hardcodear colores, fuentes ni textos en los componentes.**
 Siempre importar: `import { theme } from '@/lib/theme'`
@@ -52,13 +47,10 @@ Siempre importar: `import { theme } from '@/lib/theme'`
 
 - **Framework:** Next.js con App Router
 - **Lenguaje:** TypeScript
-- **Estilos:** Tailwind CSS
-- **Base de datos:** No implementada
-- **Autenticación:** No implementada
-- **Email:** No implementado
-- **Animaciones:** CSS/Tailwind (sin Framer Motion)
+- **Estilos:** Tailwind CSS v4 (sin tailwind.config.js — usa `@theme inline` en globals.css)
+- **Animaciones:** CSS keyframes via `<style jsx>` dentro de cada componente
 - **Iconos:** Lucide React + SVGs inline
-- **Formularios:** Implementado (sin backend)
+- **Formularios:** Implementado (sin backend aún)
 - **Deploy:** Vercel
 
 ---
@@ -72,99 +64,124 @@ qypgroup/
 │
 ├── components/
 │   └── landing/
-│       ├── navbar.tsx             # Template 2 - Glassmorphism flotante
-│       ├── hero.tsx               # Template 3 - Fullscreen centrado
-│       ├── services.tsx           # Cards de servicios expandibles
-│       ├── contact.tsx            # Formulario de contacto
-│       └── footer.tsx             # Template 3 - Banda CTA + minimalista
+│       ├── navbar.tsx             # Glassmorphism caqui flotante
+│       ├── hero.tsx               # Carrusel fullscreen centrado
+│       ├── services.tsx           # Cards estilo Halliburton con foto de fondo
+│       ├── contact.tsx            # Foto de fondo + formulario
+│       ├── footer.tsx             # Banda CTA naranja + footer glassmorphism
+│       └── center-scroll.tsx      # (vacío — scroll controlado con CSS)
 │
 ├── lib/
 │   └── theme.ts                   # ← FUENTE DE VERDAD
 │
 ├── context/
-│   ├── CONTEXT.md                 # Este archivo
-│   ├── Biblioteca-Navbar.md      # Templates de navbar
-│   ├── Biblioteca-Hero.md         # Templates de hero
-│   └── Biblioteca-Footer.md       # Templates de footer
+│   └── CONTEXT.md                 # Este archivo
 │
 └── public/
     └── images/
-        ├── logos/                 # logo.png
-        └── hero/                  # hero-1.jpg, hero-2.jpg, hero-3.jpg
+        ├── logos/                 # logo.png, logo-white.png
+        ├── hero/                  # fondo hero.jpg, hero-1.jpg … hero-5.jpg
+        ├── servicios/             # obras.jpg, servicios.jpg, rental.jpg
+        └── contacto/              # contacto.jpg
 ```
 
 ---
 
-## Templates usados actualmente
+## Estado actual de cada componente
 
-| Componente   | Template | Descripción |
-|--------------|----------|-------------|
-| Navbar       | 2        | Glassmorphism flotante, hide on scroll, hover con subrayado |
-| Hero         | 3        | Fullscreen centrado con tag amplio, pills flotantes clickeables |
-| Servicios    | Custom   | Cards con detalles siempre visibles |
-| Contacto     | Custom   | Formulario + info contacto + mapa |
-| Footer       | 3        | Banda CTA + 4 columnas |
+### Navbar (`navbar.tsx`)
+- Glassmorphism caqui: `rgba(240,230,140,0.28–0.45)` + `blur(14–20px)`
+- Logo sobre círculo blanco (96×96px), links gris oscuro con subrayado naranja en hover
+- Se oculta al hacer scroll hacia abajo (después de 100px)
+- Reaparece al hacer scroll hacia arriba O al acercar el mouse al borde superior (< 60px)
+- Se oculta al salir el mouse del navbar si se está scrolleado > 200px
+- Menú: Home · Servicios · Proceso · Trabajos + botón CTA naranja "Contactanos"
+
+### Hero (`hero.tsx`)
+- Carrusel automático: 6 imágenes, intervalo 3s, transición 1.2s, se pausa al hover
+- Overlay oscuro warm `rgba(28,20,5,0.38)` + brightness 0.9 en imágenes
+- Título blanco + titleHighlight naranja con animación `textShimmer` (naranja → #2A2510)
+- Tag badge con dot animado (naranja → verde, animación `colorPulse`)
+- Pills flotantes a la derecha (solo desktop) con animación `floatUp`
+- CTAs: "Ver Servicios" (naranja) + "Contactanos" (glassmorphism oscuro)
+- Dots de navegación en la parte inferior izquierda
+
+### Servicios (`services.tsx`)
+- Fondo: `hero-5.jpg` desenfocada (blur 8px, brightness 0.85) + overlay caqui 0.30
+- Cards estilo Halliburton: bordes rectos con vértices naranja (14×14px), `borderRadius: 20px`
+- Sombra 3D: `6px 10px 0px rgba(0,0,0,0.85)`
+- Imagen 176px + texto con título, descripción y bullets naranjas
+- `scrollMarginTop: "50px"` para scroll limpio desde el navbar
+
+### Contacto (`contact.tsx`)
+- Fondo: `contacto.jpg` desenfocada (blur 8px) + overlay caqui `rgba(224,220,192,0.30)`
+- Columna izquierda: card glassmorphism oscura `rgba(42,37,16,0.55)` con teléfono, email, dirección y mapa
+- Columna derecha: formulario sobre fondo blanco con sombra sutil
+- Animación `textShimmer` en subtítulo
+- `scrollMarginTop: "50px"`
+
+### Footer (`footer.tsx`)
+- Banda CTA superior: fondo naranja `theme.colors.accent`, título `#F0E68C`, botón blanco
+- Footer principal: glassmorphism `rgba(224,220,192,0.25)` + blur 16px + borde dorado
+- Logo sobre círculo blanco (80×80px)
+- Texto blanco en toda la sección (headings `#FFFFFF`, cuerpo `rgba(255,255,255,0.80)`)
+- Links con hover underline en color `#e0dec0` (secondary)
+- Columnas: Logo+descripción · Servicios (Obras/Servicios/Rental) · Navegación · Contacto+Mapa
+
+---
+
+## Paleta de colores activa (Refined Khaki)
+
+| Token        | Valor     | Uso                                      |
+|-------------|-----------|------------------------------------------|
+| `primary`   | `#cbc58a` | Badges y detalles (no fondo general)    |
+| `secondary` | `#e0dec0` | Secciones alternadas, cards, footer     |
+| `accent`    | `#E8691A` | Naranja rico — CTAs, highlights, bullets |
+| `background`| `#FAFAF5` | Fondo general caqui casi blanco         |
+| `dark`      | `#2A2510` | Navbar bg, footer CTA band              |
+| `text`      | `#1C1C1E` | Texto principal                         |
+| `textMuted` | `#6B6642` | Texto secundario warm                   |
+| `border`    | `#D8D49A` | Bordes warm                             |
 
 ---
 
 ## Funcionalidades implementadas
 
-- [x] Navbar flotante con logo en círculo blanco
-- [x] Navbar con hover: color cambia a blanco + subrayado naranja
-- [x] Navbar hide on scroll (oculta al bajar, muestra al subir)
-- [x] Hero responsive (min-h-screen, padding para no superponer navbar)
-- [x] Tag amplio (width 110%) con dot animado (naranja → verde)
-- [x] Pills flotantes clickeables que van a #services
-- [x] TitleHighlight más pequeño que el resto del título
-- [x] Sección servicios con cards
-- [x] Servicios con detalles siempre visibles
-- [x] Formulario de contacto
-- [x] Footer con banda CTA
-- [x] Google Maps嵌入
+- [x] Navbar glassmorphism caqui flotante con logo en círculo blanco
+- [x] Navbar hide/show on scroll + show on mouse near top edge
+- [x] Carrusel hero con 6 imágenes (pausa en hover, dots de navegación)
+- [x] Animación textShimmer en titleHighlight y subtítulos de secciones
+- [x] Pills flotantes clickeables en el hero
+- [x] Sección Servicios con fondo foto desenfocada + cards Halliburton + sombra 3D
+- [x] Sección Contacto con fondo foto desenfocada + card glassmorphism + formulario
+- [x] Footer glassmorphism con banda CTA naranja
+- [x] Footer: logo en círculo, texto blanco, hover underline secondary
+- [x] Scroll suave a secciones con scroll-margin-top CSS
 - [x] Responsive design completo
-- [x] Deploy en Vercel
+- [x] Google Maps embed en contacto y footer
 
 ---
 
 ## Pendientes y próximos pasos
 
-### Crítico
-
-- Ninguno
-
-### Backlog
-
-- Integrar formulario con backend (email)
-- Sección "Clientes" o "Proyectos"
-- WhatsApp flotante
-- SEO completo
+- [ ] Integrar formulario con backend (email / WhatsApp)
+- [ ] Sección "Clientes" o "Proyectos realizados"
+- [ ] Botón WhatsApp flotante
+- [ ] SEO completo (meta tags, og:image)
+- [ ] Imágenes hero-1 a hero-4 (actualmente pueden ser placeholder)
 
 ---
 
 ## Convenciones del proyecto
 
-- **Idioma del código:** español
 - **Idioma de la UI:** español
-- **Mensajes de error:** español
 - **Nombres de archivos:** kebab-case
 - **Componentes:** PascalCase
-- **Variables:** camelCase
-- **Estilos:** solo Tailwind + theme.ts
+- **Estilos:** solo Tailwind + `theme.ts` (sin CSS modules, sin styled-components)
+- **Animaciones:** `<style jsx>` con keyframes dentro del componente
 - **Imports:** absolutos con `@/`
+- **Colores hardcodeados permitidos:** solo valores de overlay rgba() y efectos glassmorphism donde no hay token exacto en theme
 
 ---
 
-## Notas especiales del proyecto
-
-- Colores: primary=#0F0F10 (negro), accent=#F47920 (naranja)
-- Logo en círculo blanco en navbar oscuro
-- Hero oscuro con overlay gradiente
-- Tag con animación de color (naranja → verde)
-- Pills del hero son clickeables
-- Formulario con validación frontend
-- Mapa de Google Maps嵌入
-
----
-
-**Última actualización:** 05/05/2026
-**Actualizado por:** opencode
+**Última actualización:** 19/05/2026

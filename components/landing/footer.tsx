@@ -20,38 +20,53 @@ export function Footer() {
         className="w-full py-6 px-12 flex flex-col md:flex-row items-center justify-between gap-6"
         style={{ backgroundColor: theme.colors.accent }}
       >
-        <div className="text-white text-center md:text-left">
-          <h3 className="text-xl font-bold">¿Listo para impulsar tu industria?</h3>
-          <p className="text-white/70 text-sm mt-1">
+        <div className="text-center md:text-left">
+          <h3 className="text-xl font-bold" style={{ color: "#F0E68C" }}>¿Listo para impulsar tu industria?</h3>
+          <p className="text-sm mt-1" style={{ color: "rgba(240, 230, 140, 0.70)" }}>
             Contactanos hoy, te asesoramos sin compromiso.
           </p>
         </div>
         <Link
           href={theme.navbar.cta.href}
-          className="px-7 py-3 rounded-full font-bold bg-white transition-all duration-200 hover:scale-[1.02] whitespace-nowrap"
-          style={{ color: theme.colors.accent }}
+          className="px-7 py-3 rounded-full font-bold transition-all duration-200 hover:scale-[1.02] whitespace-nowrap"
+          style={{ backgroundColor: "#FFFFFF", color: theme.colors.dark }}
         >
-          Contactanos ahora
+          Contactanos
         </Link>
       </div>
 
       <div
-        className="w-full py-9 px-12"
+        className="mx-4 md:mx-6 my-3 py-9 px-12"
         style={{
-          backgroundColor: "#FFFFFF",
-          borderTop: `1px solid ${theme.colors.border}`,
+          backgroundColor: "rgba(224, 220, 192, 0.25)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderRadius: "24px",
+          border: "1px solid rgba(200, 185, 80, 0.30)",
+          boxShadow: "0 8px 40px rgba(42, 37, 16, 0.10)",
         }}
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <img
-              src={theme.logo.path}
-              alt="Tecnosur Group"
-              width={theme.logo.width}
-              height={theme.logo.height}
-              className="h-16 w-auto"
-            />
-            <p className="text-sm" style={{ color: theme.colors.textMuted }}>
+            <div
+              className="flex items-center justify-center"
+              style={{
+                backgroundColor: "#FFFFFF",
+                borderRadius: "9999px",
+                padding: "12px",
+                width: "80px",
+                height: "80px",
+              }}
+            >
+              <img
+                src={theme.logo.path}
+                alt="QYP Group"
+                width={56}
+                height={44}
+                className="w-full h-auto"
+              />
+            </div>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.80)" }}>
               {theme.footer.description}
             </p>
             <div className="flex gap-2">
@@ -66,10 +81,10 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-200"
                     style={{
-                      borderColor: "#E0E8F0",
+                      borderColor: "rgba(255,255,255,0.40)",
                     }}
                   >
-                    <Icon size={14} style={{ color: theme.colors.primary }} />
+                    <Icon size={14} style={{ color: "#FFFFFF" }} />
                   </Link>
                 )
               })}
@@ -79,7 +94,7 @@ export function Footer() {
           <div>
             <h4
               className="text-sm font-semibold uppercase tracking-wide mb-4"
-              style={{ color: theme.colors.dark }}
+              style={{ color: "#FFFFFF" }}
             >
               Servicios
             </h4>
@@ -88,8 +103,8 @@ export function Footer() {
                 <li key={index}>
                   <Link
                     href={service.href}
-                    className="text-sm"
-                    style={{ color: theme.colors.textMuted }}
+                    className="text-sm hover:underline decoration-[#e0dec0] underline-offset-[3px] transition-all duration-200"
+                    style={{ color: "rgba(255,255,255,0.80)" }}
                   >
                     {service.label}
                   </Link>
@@ -101,7 +116,7 @@ export function Footer() {
           <div>
             <h4
               className="text-sm font-semibold uppercase tracking-wide mb-4"
-              style={{ color: theme.colors.dark }}
+              style={{ color: "#FFFFFF" }}
             >
               Navegación
             </h4>
@@ -110,8 +125,8 @@ export function Footer() {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className="text-sm"
-                    style={{ color: theme.colors.textMuted }}
+                    className="text-sm hover:underline decoration-[#e0dec0] underline-offset-[3px] transition-all duration-200"
+                    style={{ color: "rgba(255,255,255,0.80)" }}
                   >
                     {item.label}
                   </Link>
@@ -123,11 +138,11 @@ export function Footer() {
           <div className="space-y-3">
             <h4
               className="text-sm font-semibold uppercase tracking-wide"
-              style={{ color: theme.colors.dark }}
+              style={{ color: "#FFFFFF" }}
             >
               Contacto
             </h4>
-            <div className="space-y-2 text-sm" style={{ color: theme.colors.textMuted }}>
+            <div className="space-y-2 text-sm" style={{ color: "rgba(255,255,255,0.80)" }}>
               <a href={`tel:${theme.contact.phone}`} className="flex items-center gap-2">
                 <Phone size={14} />
                 {theme.contact.phone}
@@ -160,8 +175,8 @@ export function Footer() {
         <div
           className="mt-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm"
           style={{
-            borderTop: `1px solid ${theme.colors.border}`,
-            color: theme.colors.textMuted,
+            borderTop: "1px solid rgba(255,255,255,0.20)",
+            color: "rgba(255,255,255,0.70)",
           }}
         >
           <span>{theme.footer.copyright}</span>
@@ -175,6 +190,7 @@ export function Footer() {
           </div>
         </div>
       </div>
+
     </footer>
   )
 }

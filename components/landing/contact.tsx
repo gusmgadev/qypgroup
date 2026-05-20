@@ -32,87 +32,109 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 md:px-12"
-      style={{ backgroundColor: theme.colors.background }}
+      className="relative py-8 px-4 md:px-6 mx-4 md:mx-6 my-3 overflow-hidden"
+      style={{
+        borderRadius: "24px",
+        boxShadow: "0 8px 40px rgba(42, 37, 16, 0.10)",
+        scrollMarginTop: "50px",
+      }}
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+      <img
+        src="/images/contacto/contacto.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ filter: "blur(8px) brightness(0.85)", transform: "scale(1.05)" }}
+      />
+      <div className="absolute inset-0" style={{ backgroundColor: "rgba(224, 220, 192, 0.30)" }} />
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="text-center mb-6">
           <h2
             className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: theme.colors.accent }}
+            style={{ color: theme.colors.dark }}
           >
             Contacto
           </h2>
           <h3
             className="text-2xl md:text-3xl font-semibold"
-            style={{ color: theme.colors.text }}
+            style={{ color: "#E8691A", animation: "textShimmer 2.5s ease-in-out infinite" }}
           >
             ¿Necesitás más información?
           </h3>
           <p
-            className="mt-4 max-w-2xl mx-auto"
+            className="mt-2 max-w-2xl mx-auto text-sm"
             style={{ color: theme.colors.textMuted }}
           >
             Escribinos y te respondemos a la brevedad. Estamos para ayudarte.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: `${theme.colors.accent}20` }}
-              >
-                <Phone size={20} style={{ color: theme.colors.accent }} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Columna izquierda — info de contacto */}
+          <div
+            className="rounded-2xl p-5 space-y-4 flex flex-col justify-center"
+            style={{
+              minHeight: "320px",
+              backgroundColor: "rgba(42, 37, 16, 0.55)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(240, 230, 140, 0.20)",
+            }}
+          >
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${theme.colors.accent}30` }}
+                >
+                  <Phone size={20} style={{ color: "#FFFFFF" }} />
+                </div>
+                <div>
+                  <p className="text-sm" style={{ color: "rgba(240,230,140,0.75)" }}>Teléfono</p>
+                  <p className="font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.phone}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm" style={{ color: theme.colors.textMuted }}>Teléfono</p>
-                <p className="font-medium" style={{ color: theme.colors.text }}>{theme.contact.phone}</p>
-              </div>
-            </div>
 
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: `${theme.colors.accent}20` }}
-              >
-                <Mail size={20} style={{ color: theme.colors.accent }} />
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${theme.colors.accent}30` }}
+                >
+                  <Mail size={20} style={{ color: "#FFFFFF" }} />
+                </div>
+                <div>
+                  <p className="text-sm" style={{ color: "rgba(240,230,140,0.75)" }}>Email</p>
+                  <p className="font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.email}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm" style={{ color: theme.colors.textMuted }}>Email</p>
-                <p className="font-medium" style={{ color: theme.colors.text }}>{theme.contact.email}</p>
-              </div>
-            </div>
 
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: `${theme.colors.accent}20` }}
-              >
-                <MapPin size={20} style={{ color: theme.colors.accent }} />
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${theme.colors.accent}30` }}
+                >
+                  <MapPin size={20} style={{ color: "#FFFFFF" }} />
+                </div>
+                <div>
+                  <p className="text-sm" style={{ color: "rgba(240,230,140,0.75)" }}>Dirección</p>
+                  <p className="font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.address}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm" style={{ color: theme.colors.textMuted }}>Dirección</p>
-                <p className="font-medium" style={{ color: theme.colors.text }}>{theme.contact.address}</p>
-              </div>
-            </div>
 
-            <div className="pt-4">
-              <iframe
-                src={theme.footer.maps.embedUrl}
-                width="100%"
-                height="200"
-                style={{ border: 0, borderRadius: theme.radii.md }}
-                allowFullScreen
-                loading="lazy"
-              />
-            </div>
+              <div className="pt-2">
+                <iframe
+                  src={theme.footer.maps.embedUrl}
+                  width="100%"
+                  height="130"
+                  style={{ border: 0, borderRadius: theme.radii.md }}
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
           </div>
 
           <div
-            className="p-6 rounded-xl"
-            style={{ backgroundColor: theme.colors.secondary }}
+            className="p-4 rounded-xl"
+            style={{ backgroundColor: "#FFFFFF", boxShadow: "0 2px 16px rgba(42, 37, 16, 0.08)" }}
           >
             {submitted ? (
               <div className="text-center py-12">
@@ -133,10 +155,10 @@ export function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3">
                 <div>
                   <label
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-medium mb-1"
                     style={{ color: theme.colors.text }}
                   >
                     Nombre completo
@@ -147,7 +169,7 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border bg-transparent transition-colors"
+                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
                     style={{
                       borderColor: theme.colors.border,
                       color: theme.colors.text,
@@ -158,7 +180,7 @@ export function Contact() {
 
                 <div>
                   <label
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-medium mb-1"
                     style={{ color: theme.colors.text }}
                   >
                     Email
@@ -169,7 +191,7 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border bg-transparent transition-colors"
+                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
                     style={{
                       borderColor: theme.colors.border,
                       color: theme.colors.text,
@@ -180,7 +202,7 @@ export function Contact() {
 
                 <div>
                   <label
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-medium mb-1"
                     style={{ color: theme.colors.text }}
                   >
                     Teléfono (opcional)
@@ -190,7 +212,7 @@ export function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border bg-transparent transition-colors"
+                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
                     style={{
                       borderColor: theme.colors.border,
                       color: theme.colors.text,
@@ -201,7 +223,7 @@ export function Contact() {
 
                 <div>
                   <label
-                    className="block text-sm font-medium mb-2"
+                    className="block text-sm font-medium mb-1"
                     style={{ color: theme.colors.text }}
                   >
                     Mensaje
@@ -211,8 +233,8 @@ export function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border bg-transparent transition-colors resize-none"
+                    rows={3}
+                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors resize-none text-sm"
                     style={{
                       borderColor: theme.colors.border,
                       color: theme.colors.text,
@@ -224,7 +246,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50"
+                  className="w-full py-2 rounded-lg font-semibold text-sm transition-all duration-200 disabled:opacity-50"
                   style={{
                     backgroundColor: theme.colors.accent,
                     color: "#FFFFFF",
@@ -237,6 +259,12 @@ export function Contact() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes textShimmer {
+          0%, 100% { color: #E8691A; text-shadow: 0 0 8px rgba(232, 105, 26, 0.3); }
+          50% { color: #2A2510; text-shadow: none; }
+        }
+      `}</style>
     </section>
   )
 }

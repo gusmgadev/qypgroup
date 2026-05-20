@@ -48,7 +48,7 @@ export function Hero() {
               alt={`Hero ${index + 1}`}
               className="w-full h-full object-cover"
               style={{
-                filter: `blur(${theme.hero.blurAmount}) brightness(0.35)`,
+                filter: `blur(${theme.hero.blurAmount}) brightness(0.9)`,
               }}
             />
           </div>
@@ -57,38 +57,39 @@ export function Hero() {
 
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
+        style={{ backgroundColor: "rgba(28, 20, 5, 0.38)" }}
       />
 
       <div className="relative z-10 max-w-[680px] text-center px-6 md:px-12">
         <div
           className="flex items-center justify-center gap-3 px-8 py-3 rounded-full mb-8"
           style={{
-            backgroundColor: "rgba(255,255,255,0.08)",
-            border: "0.5px solid rgba(255,255,255,0.2)",
+            backgroundColor: "rgba(240, 230, 140, 0.15)",
+            border: "0.5px solid rgba(240, 230, 140, 0.35)",
             width: "110%",
             marginLeft: "auto",
             marginRight: "auto",
           }}
         >
           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ animation: "colorPulse 1.5s ease-in-out infinite" }} />
-          <span className="text-xs md:text-sm text-white whitespace-nowrap">{theme.hero.tag}</span>
+          <span className="text-xs md:text-sm whitespace-nowrap" style={{ color: "#F5F4E8" }}>{theme.hero.tag}</span>
         </div>
 
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
-          <span className="text-white">{theme.hero.title.split(theme.hero.titleHighlight)[0]}</span>
-          <br />
-          <span
-            className="text-2xl md:text-3xl lg:text-4xl"
-            style={{ color: theme.colors.accent }}
-          >
-            {theme.hero.titleHighlight}
-          </span>
+          <span style={{ color: "#FFFFFF" }}>{theme.hero.title}</span>
+          {theme.hero.titleHighlight && (
+            <>
+              <br />
+              <span className="text-2xl md:text-3xl lg:text-4xl" style={{ color: "#E8691A", animation: "textShimmer 2.5s ease-in-out infinite" }}>
+                {theme.hero.titleHighlight}
+              </span>
+            </>
+          )}
         </h1>
 
         <p
           className="text-lg mt-4 max-w-lg mx-auto"
-          style={{ color: "rgba(255,255,255,0.65)" }}
+          style={{ color: "#D8D49A" }}
         >
           {theme.hero.subtitle}
         </p>
@@ -98,7 +99,7 @@ export function Hero() {
             href={theme.hero.cta.primary.href}
             className="px-6 py-3 rounded-full font-semibold transition-transform hover:scale-[1.02]"
             style={{
-              background: `linear-gradient(to right, ${theme.colors.primary}, ${theme.colors.secondary})`,
+              background: `linear-gradient(to right, ${theme.colors.accent}, ${theme.colors.accent})`,
               color: "#FFFFFF",
             }}
           >
@@ -108,10 +109,10 @@ export function Hero() {
             href={theme.hero.cta.secondary.href}
             className="px-6 py-3 rounded-full font-semibold transition-all"
             style={{
-              backgroundColor: "rgba(255,255,255,0.10)",
+              backgroundColor: "rgba(42, 37, 16, 0.50)",
               backdropFilter: "blur(8px)",
-              border: "0.5px solid rgba(255,255,255,0.2)",
-              color: "#FFFFFF",
+              border: "0.5px solid rgba(240, 230, 140, 0.40)",
+              color: "#F5F4E8",
             }}
           >
             {theme.hero.cta.secondary.text}
@@ -128,9 +129,9 @@ export function Hero() {
               key={index}
               className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite] cursor-pointer"
               style={{
-                backgroundColor: "rgba(255,255,255,0.10)",
+                backgroundColor: "rgba(42, 37, 16, 0.75)",
                 backdropFilter: "blur(8px)",
-                border: "0.5px solid rgba(255,255,255,0.2)",
+                border: "0.5px solid rgba(240, 230, 140, 0.30)",
                 animationDelay: `${index * 1}s`,
               }}
             >
@@ -140,9 +141,9 @@ export function Hero() {
               >
                 <IconComponent size={16} color={pill.color} />
               </div>
-              <div className="text-white">
+              <div style={{ color: "#F5F4E8" }}>
                 <div className="text-sm font-semibold">{pill.title}</div>
-                <div className="text-xs text-white/60">{pill.subtitle}</div>
+                <div className="text-xs" style={{ color: "#D8D49A" }}>{pill.subtitle}</div>
               </div>
             </Link>
           )
@@ -155,10 +156,10 @@ export function Hero() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`transition-all duration-300 ${
-              index === currentSlide ? "w-8 rounded-full" : "w-2 h-2 rounded-full bg-white/30"
+              index === currentSlide ? "w-8 rounded-full" : "w-2 h-2 rounded-full"
             }`}
             style={{
-              backgroundColor: index === currentSlide ? theme.colors.accent : undefined,
+              backgroundColor: index === currentSlide ? theme.colors.accent : theme.colors.border,
             }}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -173,6 +174,10 @@ export function Hero() {
         @keyframes colorPulse {
           0%, 100% { background-color: #F47920; box-shadow: 0 0 8px #F47920; }
           50% { background-color: #22c55e; box-shadow: 0 0 12px #22c55e; }
+        }
+        @keyframes textShimmer {
+          0%, 100% { color: #E8691A; text-shadow: 0 0 8px rgba(232, 105, 26, 0.4); }
+          50% { color: #2A2510; text-shadow: none; }
         }
       `}</style>
     </section>
