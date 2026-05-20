@@ -25,19 +25,19 @@ export function Services() {
         <div className="text-center mb-5">
           <h2
             className="text-3xl md:text-4xl font-bold mb-2"
-            style={{ color: theme.colors.dark }}
+            style={{ color: "#000000" }}
           >
             Servicios
           </h2>
           <h3
             className="text-xl md:text-2xl font-semibold"
-            style={{ color: "#E8691A", animation: "textShimmer 2.5s ease-in-out infinite" }}
+            style={{ color: "#FFFFFF" }}
           >
             Soluciones integrales para tu industria
           </h3>
           <p
             className="mt-2 max-w-2xl mx-auto text-sm"
-            style={{ color: theme.colors.textMuted }}
+            style={{ color: "#000000" }}
           >
             en las etapas del proceso de extracción, producción, transporte y almacenaje
           </p>

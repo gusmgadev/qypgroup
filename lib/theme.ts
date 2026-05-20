@@ -100,7 +100,7 @@ export const theme = {
     slideInterval:   3000,
     slideTransition: "1.2s",
 
-    tag:            "SOLUCIONES PARA LA INDUSTRIA DE LA EXPLOTACIÓN, OIL&GAS, MINERIÍA Y PESCA",
+    tag:            "SOLUCIONES PARA LA INDUSTRIA DE LA EXPLOTACIÓN, OIL&GAS, MINERIÍA",
     title:          "Obras y Servicios",
     titleHighlight: "Oil &Gas Minería Rental",
     subtitle:       "Proveemos soluciones para las necesidades de la industria petrolera, minera y gasifera", 

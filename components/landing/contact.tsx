@@ -50,20 +50,20 @@ export function Contact() {
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-6">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: theme.colors.dark }}
+            className="text-3xl md:text-4xl font-bold mb-2"
+            style={{ color: "#000000" }}
           >
             Contacto
           </h2>
           <h3
-            className="text-2xl md:text-3xl font-semibold"
-            style={{ color: "#E8691A", animation: "textShimmer 2.5s ease-in-out infinite" }}
+            className="text-xl md:text-2xl font-semibold"
+            style={{ color: "#FFFFFF" }}
           >
             ¿Necesitás más información?
           </h3>
           <p
             className="mt-2 max-w-2xl mx-auto text-sm"
-            style={{ color: theme.colors.textMuted }}
+            style={{ color: "#000000" }}
           >
             Escribinos y te respondemos a la brevedad. Estamos para ayudarte.
           </p>

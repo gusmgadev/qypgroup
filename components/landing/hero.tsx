@@ -47,9 +47,9 @@ export function Hero() {
               src={src}
               alt={`Hero ${index + 1}`}
               className="w-full h-full object-cover"
-              style={{
+              style={theme.hero.blurAmount !== "0px" ? {
                 filter: `blur(${theme.hero.blurAmount}) brightness(0.9)`,
-              }}
+              } : undefined}
             />
           </div>
         ))}
@@ -61,38 +61,36 @@ export function Hero() {
       />
 
       <div className="relative z-10 max-w-[680px] text-center px-6 md:px-12">
-        <div
-          className="flex items-center justify-center gap-3 px-8 py-3 rounded-full mb-8"
-          style={{
-            backgroundColor: "rgba(240, 230, 140, 0.15)",
-            border: "0.5px solid rgba(240, 230, 140, 0.35)",
-            width: "110%",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ animation: "colorPulse 1.5s ease-in-out infinite" }} />
-          <span className="text-xs md:text-sm whitespace-nowrap" style={{ color: "#F5F4E8" }}>{theme.hero.tag}</span>
-        </div>
-
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
           <span style={{ color: "#FFFFFF" }}>{theme.hero.title}</span>
           {theme.hero.titleHighlight && (
             <>
               <br />
-              <span className="text-2xl md:text-3xl lg:text-4xl" style={{ color: "#E8691A", animation: "textShimmer 2.5s ease-in-out infinite" }}>
+              <span
+                className="inline-block px-6 py-2 rounded-full text-2xl md:text-3xl lg:text-4xl mt-2"
+                style={{
+                  backgroundColor: "rgba(28, 20, 5, 0.55)",
+                  border: "0.5px solid rgba(240, 230, 140, 0.35)",
+                  color: "#E8691A",
+                  animation: "highlightShimmer 2.5s ease-in-out infinite",
+                }}
+              >
                 {theme.hero.titleHighlight}
               </span>
             </>
           )}
         </h1>
 
-        <p
-          className="text-lg mt-4 max-w-lg mx-auto"
-          style={{ color: "#D8D49A" }}
+        <div
+          className="flex items-center justify-center gap-3 px-8 py-3 rounded-full mt-6 mb-2"
+          style={{
+            backgroundColor: "rgba(28, 20, 5, 0.40)",
+            border: "0.5px solid rgba(240, 230, 140, 0.35)",
+          }}
         >
-          {theme.hero.subtitle}
-        </p>
+          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ animation: "colorPulse 1.5s ease-in-out infinite" }} />
+          <span className="text-xs md:text-sm whitespace-nowrap" style={{ color: "#F5F4E8" }}>{theme.hero.tag}</span>
+        </div>
 
         <div className="flex justify-center gap-3 mt-8">
           <Link
@@ -178,6 +176,10 @@ export function Hero() {
         @keyframes textShimmer {
           0%, 100% { color: #E8691A; text-shadow: 0 0 8px rgba(232, 105, 26, 0.4); }
           50% { color: #2A2510; text-shadow: none; }
+        }
+        @keyframes highlightShimmer {
+          0%, 100% { color: #E8691A; text-shadow: 0 0 8px rgba(232, 105, 26, 0.4); }
+          50% { color: #FFFFFF; text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
         }
       `}</style>
     </section>
