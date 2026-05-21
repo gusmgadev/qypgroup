@@ -15,7 +15,7 @@ const socialIcons: Record<string, any> = {
 
 export function Footer() {
   return (
-    <footer className="w-full">
+    <footer className="w-full" style={{ backgroundColor: "#000000" }}>
       <div
         className="w-full py-6 px-12 flex flex-col md:flex-row items-center justify-between gap-6"
         style={{ backgroundColor: theme.colors.accent }}
