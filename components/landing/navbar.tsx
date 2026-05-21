@@ -10,7 +10,7 @@ const navItems = [
     { label: "Home", href: "/" },
     { label: "Servicios", href: "#services" },
     { label: "Proceso", href: "#process" },
-    { label: "Trabajos", href: "#trabajos" },
+    { label: "Trabajos", href: "/trabajos" },
   ]
 
 export function Navbar() {
@@ -156,7 +156,7 @@ backgroundColor: "#FFFFFF",
               ))}
               <Link
                 href={theme.navbar.cta.href}
-                className="mt-2 block text-center px-5 py-3 rounded-full font-semibold"
+                className="block text-center px-5 py-3 rounded-full font-semibold"
                 style={{ backgroundColor: theme.colors.accent, color: "#FFFFFF" }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >

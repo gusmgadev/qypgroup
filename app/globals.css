@@ -24,3 +24,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes shimmer {
+  0%   { color: #ffffff; text-shadow: 0 0 24px rgba(255,255,255,0.50); }
+  100% { color: #E8691A; text-shadow: 0 0 20px rgba(232,105,26,0.30); }
+}
+
+.shimmer-title {
+  animation: shimmer 3s ease-in-out infinite alternate;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+}
+
+.login-btn:hover {
+  background-color: #4A4440 !important;
+  color: #ffffff !important;
+}
+
+.back-home-btn:hover {
+  background-color: #4A4440 !important;
+  color: #ffffff !important;
+}

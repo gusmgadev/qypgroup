@@ -195,7 +195,7 @@ services: [
       { label: "Home",    href: "/" },
       { label: "Servicios", href: "#services" },
       { label: "Proceso",   href: "#process" },
-      { label: "Trabajos",  href: "#trabajos" },
+      { label: "Trabajos",  href: "/trabajos" },
     ],
   },
 

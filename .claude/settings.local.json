@@ -2,7 +2,20 @@
   "permissions": {
     "allow": [
       "Bash(findstr -i tailwind)",
-      "Bash(Get-ChildItem \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\" -Filter \"tailwind.config.*\")"
+      "Bash(Get-ChildItem \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\" -Filter \"tailwind.config.*\")",
+      "PowerShell(Get-ChildItem -Path \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\" | Where-Object { $_.Name -ne \"node_modules\" } | Select-Object Name, @{Name=\"Type\"; Expression={if\\($_.PSIsContainer\\){\"DIR\"}else{\"FILE\"}}} | Format-Table -AutoSize)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"c:/MGA/PROYECTOSWEB/qypgroup/app/api/auth/[...nextauth]\" \"c:/MGA/PROYECTOSWEB/qypgroup/app/api/projects/[id]/photos\" 2>&1; echo \"done\")",
+      "Bash(mkdir -p \"c:/MGA/PROYECTOSWEB/qypgroup/app/auth/signin\" \"c:/MGA/PROYECTOSWEB/qypgroup/app/dashboard/projects/new\" 2>&1; mkdir -p \"c:/MGA/PROYECTOSWEB/qypgroup/app/dashboard/projects/[id]/edit\" 2>&1; echo \"done\")",
+      "Bash(mkdir -p \"c:/MGA/PROYECTOSWEB/qypgroup/app/trabajos/[id]\" 2>&1; echo \"done\")",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('base64'\\)\\)\")",
+      "Bash(node -e \"const b=require\\('bcryptjs'\\); b.hash\\('admin123',12\\).then\\(h=>console.log\\('Hash:',h\\)\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\api\\auth",
+      "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\dashboard\\projects\\[id]",
+      "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\trabajos"
     ]
   }
 }
