@@ -98,6 +98,8 @@ export async function upsertContact(params: {
     isNew = true
   }
 
+  if (!contact) throw new Error("Failed to create or retrieve contact")
+
   const { error: msgError } = await supabaseAdmin
     .from("contact_messages")
     .insert({
