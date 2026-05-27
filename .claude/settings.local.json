@@ -10,12 +10,14 @@
       "Bash(mkdir -p \"c:/MGA/PROYECTOSWEB/qypgroup/app/trabajos/[id]\" 2>&1; echo \"done\")",
       "Bash(npx tsc *)",
       "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('base64'\\)\\)\")",
-      "Bash(node -e \"const b=require\\('bcryptjs'\\); b.hash\\('admin123',12\\).then\\(h=>console.log\\('Hash:',h\\)\\)\")"
+      "Bash(node -e \"const b=require\\('bcryptjs'\\); b.hash\\('admin123',12\\).then\\(h=>console.log\\('Hash:',h\\)\\)\")",
+      "Bash(mkdir -p \"c:/MGA/PROYECTOSWEB/qypgroup/app/api/contacts/[id]/messages/[messageId]\")"
     ],
     "additionalDirectories": [
       "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\api\\auth",
       "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\dashboard\\projects\\[id]",
-      "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\trabajos"
+      "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\trabajos",
+      "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\api\\contacts\\[id]\\messages"
     ]
   }
 }

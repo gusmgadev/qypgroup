@@ -36,8 +36,8 @@ export function Hero() {
 
   return (
     <section
-      className="relative min-h-screen overflow-hidden flex items-center justify-center"
-      style={{ paddingTop: "140px", paddingBottom: "60px" }}
+      className="relative min-h-screen overflow-hidden flex items-center justify-center mx-4 md:mx-6 my-3"
+      style={{ paddingTop: "140px", paddingBottom: "60px", borderRadius: "24px" }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -69,7 +69,7 @@ export function Hero() {
 
       <div className="relative z-10 max-w-[680px] text-center px-6 md:px-12">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
-          <span style={{ color: "#FFFFFF" }}>{theme.hero.title}</span>
+          <span style={{ color: "#FFFFFF", whiteSpace: "nowrap" }}>{theme.hero.title}</span>
           {theme.hero.titleHighlight && (
             <>
               <br />
@@ -130,25 +130,25 @@ export function Hero() {
           const IconComponent = iconMap[pill.icon] || iconMap.truck
           return (
             <Link
-              href="#services"
+              href={(pill as any).href ?? "#services"}
               key={index}
               className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite] cursor-pointer"
               style={{
-                backgroundColor: "rgba(42, 37, 16, 0.75)",
+                backgroundColor: "rgba(203, 197, 138, 0.90)",
                 backdropFilter: "blur(8px)",
-                border: "0.5px solid rgba(240, 230, 140, 0.30)",
+                border: "0.5px solid rgba(203, 197, 138, 0.60)",
                 animationDelay: `${index * 1}s`,
               }}
             >
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: `${pill.color}44` }}
+                style={{ backgroundColor: "rgba(42,37,16,0.25)" }}
               >
-                <IconComponent size={16} color={pill.color} />
+                <IconComponent size={16} color="#1a1508" />
               </div>
-              <div style={{ color: "#F5F4E8" }}>
-                <div className="text-sm font-semibold">{pill.title}</div>
-                <div className="text-xs" style={{ color: "#D8D49A" }}>{pill.subtitle}</div>
+              <div>
+                <div className="text-sm font-semibold" style={{ color: "#2A2510" }}>{pill.title}</div>
+                <div className="text-xs" style={{ color: "#4A4220" }}>{pill.subtitle}</div>
               </div>
             </Link>
           )

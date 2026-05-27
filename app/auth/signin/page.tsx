@@ -37,7 +37,7 @@ export default function SignInPage() {
     <div
       style={{
         minHeight: "100vh",
-        background: theme.colors.dark,
+        background: "#FFFFFF",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -49,21 +49,21 @@ export default function SignInPage() {
         style={{
           width: "100%",
           maxWidth: "400px",
-          backgroundColor: "rgba(250,250,245,0.05)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          border: `1px solid rgba(203,197,138,0.20)`,
+          backgroundColor: "#FFFFFF",
+          border: `1px solid ${theme.colors.border}`,
           borderRadius: theme.radii.lg,
           padding: "40px 36px",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
           <div
             style={{
-              width: "64px",
-              height: "64px",
+              width: "72px",
+              height: "72px",
               borderRadius: "50%",
-              backgroundColor: "#fff",
+              backgroundColor: theme.colors.background,
+              border: `1px solid ${theme.colors.border}`,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -80,7 +80,7 @@ export default function SignInPage() {
           </div>
           <h1
             style={{
-              color: theme.colors.secondary,
+              color: theme.colors.dark,
               fontSize: theme.fontSizes.xl,
               fontWeight: theme.fontWeights.bold,
               margin: 0,
@@ -90,7 +90,7 @@ export default function SignInPage() {
           </h1>
           <p
             style={{
-              color: "rgba(224,222,192,0.60)",
+              color: theme.colors.textMuted,
               fontSize: theme.fontSizes.sm,
               marginTop: "6px",
             }}
@@ -104,7 +104,7 @@ export default function SignInPage() {
             <label
               style={{
                 display: "block",
-                color: theme.colors.secondary,
+                color: theme.colors.text,
                 fontSize: theme.fontSizes.sm,
                 fontWeight: theme.fontWeights.medium,
                 marginBottom: "6px",
@@ -121,10 +121,10 @@ export default function SignInPage() {
               style={{
                 width: "100%",
                 padding: "10px 14px",
-                background: "rgba(255,255,255,0.08)",
-                border: `1px solid rgba(203,197,138,0.30)`,
+                background: "#FFFFFF",
+                border: `1px solid ${theme.colors.border}`,
                 borderRadius: theme.radii.sm,
-                color: "#fff",
+                color: theme.colors.text,
                 fontSize: theme.fontSizes.base,
                 outline: "none",
                 boxSizing: "border-box",
@@ -136,7 +136,7 @@ export default function SignInPage() {
             <label
               style={{
                 display: "block",
-                color: theme.colors.secondary,
+                color: theme.colors.text,
                 fontSize: theme.fontSizes.sm,
                 fontWeight: theme.fontWeights.medium,
                 marginBottom: "6px",
@@ -153,10 +153,10 @@ export default function SignInPage() {
               style={{
                 width: "100%",
                 padding: "10px 14px",
-                background: "rgba(255,255,255,0.08)",
-                border: `1px solid rgba(203,197,138,0.30)`,
+                background: "#FFFFFF",
+                border: `1px solid ${theme.colors.border}`,
                 borderRadius: theme.radii.sm,
-                color: "#fff",
+                color: theme.colors.text,
                 fontSize: theme.fontSizes.base,
                 outline: "none",
                 boxSizing: "border-box",

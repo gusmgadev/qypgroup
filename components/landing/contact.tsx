@@ -7,6 +7,7 @@ import { theme } from "@/lib/theme"
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
+    company: "",
     email: "",
     phone: "",
     message: "",
@@ -14,15 +15,31 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    setTimeout(() => {
+    setError(null)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error ?? "Error al enviar el mensaje")
+      } else {
+        setSubmitted(true)
+        setFormData({ name: "", company: "", email: "", phone: "", message: "" })
+      }
+    } catch {
+      setError("No se pudo conectar con el servidor")
+    } finally {
       setIsSubmitting(false)
-      setSubmitted(true)
-      setFormData({ name: "", email: "", phone: "", message: "" })
-    }, 1500)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -153,6 +170,13 @@ export function Contact() {
                 <p style={{ color: theme.colors.textMuted }}>
                   Gracias por contactarnos. Te responderemos a la brevedad.
                 </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+                  style={{ backgroundColor: theme.colors.accent, color: "#FFFFFF" }}
+                >
+                  Enviar otro mensaje
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3">
@@ -175,6 +199,27 @@ export function Contact() {
                       color: theme.colors.text,
                     }}
                     placeholder="Tu nombre"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    style={{ color: theme.colors.text }}
+                  >
+                    Empresa (opcional)
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
+                    style={{
+                      borderColor: theme.colors.border,
+                      color: theme.colors.text,
+                    }}
+                    placeholder="Nombre de tu empresa"
                   />
                 </div>
 
@@ -242,6 +287,12 @@ export function Contact() {
                     placeholder="¿En qué podemos ayudarte?"
                   />
                 </div>
+
+                {error && (
+                  <p className="text-sm text-center" style={{ color: theme.colors.error }}>
+                    {error}
+                  </p>
+                )}
 
                 <button
                   type="submit"

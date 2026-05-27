@@ -86,8 +86,8 @@ export const theme = {
     height:       "90px",
     heightMobile: "70px",
     cta: {
-      text: "Contactanos",
-      href: "#contact",
+      text: "Login",
+      href: "/auth/signin",
     },
   },
 
@@ -101,8 +101,8 @@ export const theme = {
     slideTransition: "1.2s",
 
     tag:            "SOLUCIONES PARA LA INDUSTRIA DE LA EXPLOTACIÓN, OIL&GAS, MINERIÍA",
-    title:          "Obras y Servicios",
-    titleHighlight: "Oil &Gas Minería Rental",
+    title:          "Obras, Servicios y Rental",
+    titleHighlight: "Oil &Gas Minería",
     subtitle:       "Proveemos soluciones para las necesidades de la industria petrolera, minera y gasifera", 
 
     cta: {
@@ -116,49 +116,101 @@ export const theme = {
       "/images/hero/hero-2.jpg",
       "/images/hero/hero-3.jpg",
       "/images/hero/hero-4.jpg",
-      "/images/hero/hero-5.jpg",
+      
     ],
 
     pills: [
-      { title: "Alianzas estratégicas", subtitle: "Sumate a nuestro equipo", color: "#E8691A", icon: "handshake" },
-      { title: "Sumate al staff", subtitle: "Envianos tu CV", color: "#1C1C1E", icon: "userplus" },
-      
+      { title: "Escribinos", subtitle: "Te asesoramos sin compromiso", color: "#E8691A", icon: "handshake", href: "#contact" },
+      { title: "Sumate al staff", subtitle: "Envianos tu CV", color: "#1C1C1E", icon: "userplus", href: "#services" },
     ],
 services: [
       {
-        title: "Obras",
-        description: "Realizamos la construccion de estructuras de pequeño, mediano y gran porte.",
+        title: "Obras y montajes",
+        description: "Ejecutamos obras civiles e industriales de principio a fin: locaciones, piletas de contención, cercos, gasoductos, oleoductos, acueductos, estructuras metálicas, estaciones compresoras, válvulas de corte (linebreak) y estaciones distribuidoras (citygates).",
         icon: "truck",
         image: "/images/servicios/obras.jpg",
         details: [
-          "Construccion de fosas de anclaje y testeo",
-          "Construccion de piletas para contencion",
+          "Construccion de locaciones",
+          "Construccion de piletas de contencion de derrames",
+          "Provision y armado de de Naves - Gaplones - Tinglados - Techos - Estructuras Metálicas",
+          "  * (Con set de planos y memoria de cálculo)",
           "Cercos perimetrales",
-          "Limpieza de Locaciones"
+          "Gasoductos , oleoductos y acueductos",
+          "Estaciones compresoras",
+          "Valvulas de corte en gasoductos (Linebreak)",
+          "Estaciones distribuidras(Citygates)",
+          "Obras civiles"
         ]
       },
       {
         title: "Servicios",
-        description: "Un equipo de especialistas le ofrece la mas avanzada tecnología y calidad.",
+        description: "Brindamos soporte operativo integral en locaciones: mantenimiento de caminos y movimiento de suelo, soldaduras, abastecimiento de insumos a destinos remotos, remediación de tierras y provisión de infraestructura transitoria (obradores, pañoles, contenedores y volquetes).",
         icon: "wrench",
         image: "/images/servicios/servicios.jpg",
         details: [
-          "Mantenimiento y reparacion de equipos",
-          "Sistemas integrales de control, calibracion y programacion",
-          "Sensores de locación"
+          "Mantenimiento de caminos",
+          "Movimiento de suelo",
+          "Abastecimiento de insumos generales a locaciones remotas",
+          "Soldaduras en general",
+          "Remediación de tierras para deposición final",
+          "Povisión de obradores y pañoles",
+          "Provisión de container de 20 y 40 pies",
+          "Provisión de volquetes de limpieza"
         ]
       },
       {
         title: "Rental",
-        description: "Contamos con equipos especializados para alquiler, listos para operar.",
+        description: "Contamos con una flota completa lista para operar: automóviles, camionetas 4x4, camiones (chupe, volcadores, porta contenedores), camiones tractores con semiplayo, tanque y tolva, maquinaria vial, vehículos especiales y contenedores de 6 y 12 metros.",
         icon: "package",
         image: "/images/servicios/rental.jpg",
         details: [
-          "Equipos porta-contenedores",
-          "Contenedores modulares",
-          "Maquinaria pesada",
-          "Vehículos utilitarios"
+          "Automoviles",
+          "Camionetas 4x4",
+          "Camiones",
+          " * Chupe",
+          " * Porta Contenedores",
+          " * Volcadores",
+          " * ",
+          "Camiones Tractores",
+          " * Carretones",
+          " * Sempiplayo",
+          " * Tanque",
+          " * Volcadores",
+          " * Tolva",
+          "Maquinas Viales",
+          "Vehiculos Especiales",
+          "Contenedores",
+          " * 6 mts",
+          " * 12 mts",
+          " * 12 mts HC",
+
         ]
+      },
+    ],
+  },
+
+  // ── PROCESO ────────────────────────────────────────────────────────────────
+  process: {
+    steps: [
+      {
+        number: "01",
+        title: "Relevamiento",
+        description: "Visitamos la locación, evaluamos condiciones de terreno, acceso y requerimientos operativos para definir el alcance del trabajo.",
+      },
+      {
+        number: "02",
+        title: "Propuesta Técnica",
+        description: "Elaboramos un plan detallado con especificaciones técnicas, cronograma de ejecución y presupuesto ajustado a tu operación.",
+      },
+      {
+        number: "03",
+        title: "Ejecución",
+        description: "Desplegamos equipos y personal propio, cumpliendo normativas de seguridad y manteniendo comunicación permanente con el cliente.",
+      },
+      {
+        number: "04",
+        title: "Entrega y Seguimiento",
+        description: "Hacemos entrega formal con documentación completa y brindamos soporte post-obra para garantizar la continuidad operativa.",
       },
     ],
   },
@@ -186,7 +238,7 @@ services: [
     },
 
 services: [
-      { label: "Obras",     href: "#services" },
+      { label: "Obras y montajes", href: "#services" },
       { label: "Servicios", href: "#services" },
       { label: "Rental",    href: "#services" },
     ],

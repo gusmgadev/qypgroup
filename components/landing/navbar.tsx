@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
@@ -10,20 +10,30 @@ const navItems = [
     { label: "Home", href: "/" },
     { label: "Servicios", href: "#services" },
     { label: "Proceso", href: "#process" },
-    { label: "Trabajos", href: "/trabajos" },
+    { label: "Trabajos", href: "#trabajos" },
   ]
 
 export function Navbar() {
   const pathname = usePathname()
+  const isHomePage = pathname === "/"
+  const resolveHref = (href: string) =>
+    href.startsWith("#") && !isHomePage ? `/${href}` : href
   const [isScrolled, setIsScrolled] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const suppressScrollRef = useRef(false)
+  const showMiniNav = isHomePage ? isHidden : true
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       setIsScrolled(currentScrollY > 20)
+
+      if (suppressScrollRef.current) {
+        setLastScrollY(currentScrollY)
+        return
+      }
 
       if (currentScrollY > 100) {
         if (currentScrollY > lastScrollY) {
@@ -41,21 +51,56 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [lastScrollY])
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (e.clientY < 60) setIsHidden(false)
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
 
   
 
   return (
-    <header
+    <>
+    <div
+      className="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 hidden md:block"
+      style={{ transform: showMiniNav ? "translateY(0)" : "translateY(-100%)" }}
+    >
+      <nav
+        className="w-full flex justify-center gap-2"
+        style={{
+          backgroundColor: "rgba(240, 230, 140, 0.60)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: "0.5px solid rgba(200, 185, 80, 0.45)",
+          padding: "10px 32px",
+        }}
+      >
+        {navItems.map((item) => (
+          <Link
+            key={item.label}
+            href={resolveHref(item.href)}
+            onClick={() => {
+              if (item.href === "/") {
+                setIsHidden(false)
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              } else {
+                suppressScrollRef.current = true
+                setIsHidden(true)
+                setTimeout(() => { suppressScrollRef.current = false }, 900)
+              }
+            }}
+            className="px-5 py-1 text-sm font-semibold rounded-full text-[#1C1C1E] hover:text-white bg-[rgba(255,255,255,0.35)] hover:bg-[#4A4440] transition-all duration-200"
+            style={{
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              border: "0.5px solid rgba(255,255,255,0.50)",
+              textAlign: "center",
+            }}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+    </div>
+
+    {isHomePage && <header
       className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 transition-transform duration-300"
       style={{ transform: isHidden ? "translateY(-120%)" : "translateY(0)" }}
-      onMouseLeave={() => { if (window.scrollY > 200) setIsHidden(true) }}
     >
       <nav
         className="max-w-[1100px] w-full rounded-full transition-all duration-200"
@@ -63,7 +108,7 @@ export function Navbar() {
           backgroundColor: isScrolled ? "rgba(240, 230, 140, 0.45)" : "rgba(240, 230, 140, 0.28)",
           backdropFilter: isScrolled ? "blur(20px)" : "blur(14px)",
           border: "0.5px solid rgba(200, 185, 80, 0.45)",
-          padding: "12px 28px",
+          padding: "6px 28px",
         }}
       >
         <div className="flex items-center justify-between">
@@ -71,11 +116,11 @@ export function Navbar() {
             <div
               className="flex items-center justify-center"
               style={{
-backgroundColor: "#FFFFFF",
+                backgroundColor: "#FFFFFF",
                 borderRadius: "9999px",
-                padding: "16px",
-                width: "96px",
-                height: "96px",
+                padding: "12px",
+                width: "125px",
+                height: "125px",
               }}
             >
               <img
@@ -92,7 +137,15 @@ backgroundColor: "#FFFFFF",
             {navItems.map((item) => (
               <Link
                 key={item.label}
-                href={item.href}
+                href={resolveHref(item.href)}
+                onClick={() => {
+                  if (item.href === "/") {
+                    setIsHidden(false)
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  } else {
+                    setIsHidden(true)
+                  }
+                }}
                 className="group px-5 py-1 text-lg font-semibold relative rounded-full text-[#1C1C1E] hover:text-white bg-[rgba(255,255,255,0.35)] hover:bg-[#4A4440] transition-all duration-200"
                 style={{
                   backdropFilter: "blur(8px)",
@@ -146,7 +199,7 @@ backgroundColor: "#FFFFFF",
               {navItems.map((item) => (
                 <Link
                   key={item.label}
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   className="px-4 py-3 rounded-lg"
                   style={{ color: theme.colors.dark }}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -166,6 +219,7 @@ backgroundColor: "#FFFFFF",
           </div>
         )}
       </nav>
-    </header>
+    </header>}
+    </>
   )
 }

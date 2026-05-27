@@ -21,13 +21,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
   if (!project || !project.visible) notFound()
 
-  const photos = project.photos ?? []
+  const photos = project.photos?.slice().sort((a, b) => a.order - b.order) ?? []
+  const coverUrl = photos[0]?.url ?? "/images/hero/hero-4.jpg"
 
   return (
     <main style={{ minHeight: "100vh", backgroundColor: theme.colors.background }}>
       <Navbar />
 
-      {/* Hero — mismo fondo que Servicios */}
       <section
         style={{
           position: "relative",
@@ -37,7 +37,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         }}
       >
         <img
-          src="/images/hero/hero-5.jpg"
+          src={coverUrl}
           alt=""
           aria-hidden="true"
           style={{
@@ -46,11 +46,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            filter: "blur(8px) brightness(0.85)",
-            transform: "scale(1.05)",
+            filter: "blur(10px) brightness(0.70)",
+            transform: "scale(1.08)",
           }}
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(224, 220, 192, 0.30)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(42, 37, 16, 0.45)" }} />
 
         <div
           style={{
@@ -62,7 +62,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           }}
         >
           <Link
-            href="/trabajos"
+            href="/#trabajos"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -81,30 +81,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
           <h1
             style={{
-              color: theme.colors.dark,
+              color: "#FFFFFF",
               fontSize: "clamp(26px, 4vw, 44px)",
               fontWeight: theme.fontWeights.bold,
               fontFamily: theme.fonts.primary,
-              margin: "0 0 14px",
+              margin: 0,
               lineHeight: 1.2,
             }}
           >
             {project.title}
           </h1>
-
-          {project.description && (
-            <p
-              style={{
-                color: theme.colors.text,
-                fontSize: theme.fontSizes.lg,
-                lineHeight: 1.7,
-                margin: 0,
-                maxWidth: "680px",
-              }}
-            >
-              {project.description}
-            </p>
-          )}
         </div>
       </section>
 
@@ -123,9 +109,24 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               height: "3px",
               backgroundColor: theme.colors.accent,
               borderRadius: "2px",
-              marginBottom: "32px",
+              marginBottom: "24px",
             }}
           />
+
+          {project.description && (
+            <p
+              style={{
+                color: theme.colors.text,
+                fontSize: theme.fontSizes.lg,
+                lineHeight: 1.7,
+                margin: "0 0 32px",
+                maxWidth: "680px",
+              }}
+            >
+              {project.description}
+            </p>
+          )}
+
           <h2
             style={{
               color: theme.colors.dark,

@@ -16,26 +16,7 @@ const socialIcons: Record<string, any> = {
 export function Footer() {
   return (
     <footer className="w-full" style={{ backgroundColor: "#000000" }}>
-      <div
-        className="w-full py-6 px-12 flex flex-col md:flex-row items-center justify-between gap-6"
-        style={{ backgroundColor: theme.colors.accent }}
-      >
-        <div className="text-center md:text-left">
-          <h3 className="text-xl font-bold" style={{ color: "#F0E68C" }}>¿Listo para impulsar tu industria?</h3>
-          <p className="text-sm mt-1" style={{ color: "rgba(240, 230, 140, 0.70)" }}>
-            Contactanos hoy, te asesoramos sin compromiso.
-          </p>
-        </div>
-        <Link
-          href={theme.navbar.cta.href}
-          className="px-7 py-3 rounded-full font-bold transition-all duration-200 hover:scale-[1.02] whitespace-nowrap"
-          style={{ backgroundColor: "#FFFFFF", color: theme.colors.dark }}
-        >
-          Contactanos
-        </Link>
-      </div>
-
-      <div
+<div
         className="mx-4 md:mx-6 my-3 py-9 px-12"
         style={{
           backgroundColor: "rgba(224, 220, 192, 0.25)",

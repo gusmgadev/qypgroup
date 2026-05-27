@@ -16,7 +16,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           style={{
             marginLeft: theme.dashboard.sidebarWidth,
             flex: 1,
-            backgroundColor: theme.colors.background,
+            backgroundColor: "#FFFFFF",
             minHeight: "100vh",
           }}
         >
