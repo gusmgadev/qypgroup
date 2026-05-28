@@ -193,7 +193,8 @@ export function TrabajosSection({ projects }: { projects: Project[] }) {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, 300px)",
+                justifyContent: "center",
                 gap: "20px",
               }}
             >
