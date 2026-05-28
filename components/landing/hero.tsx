@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Handshake, UserPlus } from "lucide-react"
 import { theme } from "@/lib/theme"
+import { StaffModal } from "./staff-modal"
 const iconMap: Record<string, any> = {
   truck: ({ size = 16, color = "#000" }: { size?: number; color?: string }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
@@ -25,6 +26,7 @@ const iconMap: Record<string, any> = {
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [staffModalOpen, setStaffModalOpen] = useState(false)
 
   useEffect(() => {
     if (isPaused) return
@@ -128,18 +130,8 @@ export function Hero() {
       <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3">
         {theme.hero.pills.map((pill, index) => {
           const IconComponent = iconMap[pill.icon] || iconMap.truck
-          return (
-            <Link
-              href={(pill as any).href ?? "#services"}
-              key={index}
-              className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite] cursor-pointer"
-              style={{
-                backgroundColor: "rgba(203, 197, 138, 0.90)",
-                backdropFilter: "blur(8px)",
-                border: "0.5px solid rgba(203, 197, 138, 0.60)",
-                animationDelay: `${index * 1}s`,
-              }}
-            >
+          const pillContent = (
+            <>
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: "rgba(42,37,16,0.25)" }}
@@ -150,6 +142,34 @@ export function Hero() {
                 <div className="text-sm font-semibold" style={{ color: "#2A2510" }}>{pill.title}</div>
                 <div className="text-xs" style={{ color: "#4A4220" }}>{pill.subtitle}</div>
               </div>
+            </>
+          )
+          const pillStyle = {
+            backgroundColor: "rgba(203, 197, 138, 0.90)",
+            backdropFilter: "blur(8px)",
+            border: "0.5px solid rgba(203, 197, 138, 0.60)",
+            animationDelay: `${index * 1}s`,
+          }
+          if (pill.icon === "userplus") {
+            return (
+              <button
+                key={index}
+                onClick={() => setStaffModalOpen(true)}
+                className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite] cursor-pointer text-left"
+                style={pillStyle}
+              >
+                {pillContent}
+              </button>
+            )
+          }
+          return (
+            <Link
+              href={(pill as any).href ?? "#services"}
+              key={index}
+              className="flex items-center gap-3 px-4 py-3 rounded-full animate-[floatUp_3s_ease-in-out_infinite] cursor-pointer"
+              style={pillStyle}
+            >
+              {pillContent}
             </Link>
           )
         })}
@@ -170,6 +190,8 @@ export function Hero() {
           />
         ))}
       </div>
+
+      {staffModalOpen && <StaffModal onClose={() => setStaffModalOpen(false)} />}
 
       <style jsx>{`
         @keyframes floatUp {

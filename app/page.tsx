@@ -9,6 +9,8 @@ import { Footer } from "@/components/landing/footer"
 import { CenterScroll } from "@/components/landing/center-scroll"
 import { getVisibleProjects } from "@/lib/db/projects"
 
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
   const projects = await getVisibleProjects().catch(() => [])
 

@@ -5,13 +5,14 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { signOut } from "next-auth/react"
-import { LogOut, ChevronDown, ChevronRight, Briefcase, Users, ShieldCheck, Settings } from "lucide-react"
+import { LogOut, ChevronDown, ChevronRight, Briefcase, Users, ShieldCheck, Settings, UserCheck } from "lucide-react"
 import { theme } from "../../lib/theme"
 
 const adminItems = [
   { label: "Trabajos",                href: "/dashboard",          icon: Briefcase  },
-  { label: "Contactos",               href: "/dashboard/contacts", icon: Users      },
-  { label: "Usuarios y permisos",     href: "/dashboard/usuarios", icon: ShieldCheck },
+  { label: "Contactos",               href: "/dashboard/contacts",    icon: Users      },
+  { label: "Candidatos",              href: "/dashboard/candidatos",  icon: UserCheck  },
+  { label: "Usuarios y permisos",     href: "/dashboard/usuarios",    icon: ShieldCheck },
 ]
 
 export default function DashboardSidebar() {
