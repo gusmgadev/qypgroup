@@ -3,7 +3,6 @@ import { Hero } from "@/components/landing/hero"
 import { Services } from "@/components/landing/services"
 import { Process } from "@/components/landing/process"
 import { TrabajosSection } from "@/components/landing/trabajos"
-import { CtaBanner } from "@/components/landing/cta-banner"
 import { Contact } from "@/components/landing/contact"
 import { Footer } from "@/components/landing/footer"
 import { CenterScroll } from "@/components/landing/center-scroll"
@@ -21,8 +20,7 @@ export default async function Home() {
       <Hero />
       <Services />
       <Process />
-      <CtaBanner />
-      <TrabajosSection projects={projects} />
+<TrabajosSection projects={projects} />
       <Contact />
       <Footer />
     </main>

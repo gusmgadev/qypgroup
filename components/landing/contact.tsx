@@ -51,7 +51,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative mx-4 md:mx-6 my-3 overflow-hidden"
+      className="relative mx-4 md:mx-6 my-3"
       style={{
         borderRadius: "24px",
         boxShadow: "0 8px 40px rgba(42, 37, 16, 0.10)",
@@ -153,71 +153,68 @@ export function Contact() {
       </div>
 
       {/* ── ZONA 2: FORMULARIO + INFO ─────────────────────────────────── */}
-      <div style={{ backgroundColor: theme.colors.background, padding: "40px 24px" }}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div style={{ backgroundColor: theme.colors.background, padding: "24px 28px" }}>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
 
           {/* Info de contacto */}
           <div
-            className="rounded-2xl p-6 space-y-5 flex flex-col justify-center"
+            className="rounded-xl p-5 space-y-4 flex flex-col justify-center"
             style={{
               backgroundColor: theme.colors.dark,
-              minHeight: "320px",
             }}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: `${theme.colors.accent}30` }}
               >
-                <Phone size={20} color="#FFFFFF" />
+                <Phone size={16} color="#FFFFFF" />
               </div>
               <div>
-                <p className="text-sm" style={{ color: "rgba(203,197,138,0.70)" }}>Teléfono</p>
-                <p className="font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.phone}</p>
+                <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>Teléfono</p>
+                <p className="text-sm font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.phone}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: `${theme.colors.accent}30` }}
               >
-                <Mail size={20} color="#FFFFFF" />
+                <Mail size={16} color="#FFFFFF" />
               </div>
               <div>
-                <p className="text-sm" style={{ color: "rgba(203,197,138,0.70)" }}>Email</p>
-                <p className="font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.email}</p>
+                <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>Email</p>
+                <p className="text-sm font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.email}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: `${theme.colors.accent}30` }}
               >
-                <MapPin size={20} color="#FFFFFF" />
+                <MapPin size={16} color="#FFFFFF" />
               </div>
               <div>
-                <p className="text-sm" style={{ color: "rgba(203,197,138,0.70)" }}>Dirección</p>
-                <p className="font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.address}</p>
+                <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>Dirección</p>
+                <p className="text-sm font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.address}</p>
               </div>
             </div>
 
-            <div className="pt-1">
-              <iframe
-                src={theme.footer.maps.embedUrl}
-                width="100%"
-                height="130"
-                style={{ border: 0, borderRadius: theme.radii.md }}
-                allowFullScreen
-                loading="lazy"
-              />
-            </div>
+            <iframe
+              src={theme.footer.maps.embedUrl}
+              width="100%"
+              height="145"
+              style={{ border: 0, borderRadius: theme.radii.md }}
+              allowFullScreen
+              loading="lazy"
+            />
           </div>
 
           {/* Formulario */}
           <div
-            className="p-5 rounded-2xl"
+            className="p-5 rounded-xl flex flex-col"
             style={{ backgroundColor: "#FFFFFF", boxShadow: "0 2px 16px rgba(42,37,16,0.08)" }}
           >
             {submitted ? (
@@ -243,63 +240,35 @@ export function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <div>
-                  <label className="block text-sm font-medium mb-1" style={{ color: theme.colors.text }}>
-                    Nombre completo
-                  </label>
-                  <input
-                    type="text" name="name" value={formData.name} onChange={handleChange} required
-                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
-                    style={{ borderColor: theme.colors.border, color: theme.colors.text }}
-                    placeholder="Tu nombre"
-                  />
-                </div>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3 h-full">
+                {[
+                  { label: "Nombre", name: "name", type: "text", required: true, placeholder: "Tu nombre" },
+                  { label: "Empresa", name: "company", type: "text", required: false, placeholder: "Opcional" },
+                  { label: "Email", name: "email", type: "email", required: true, placeholder: "tu@email.com" },
+                  { label: "Teléfono", name: "phone", type: "tel", required: false, placeholder: "+54 9..." },
+                ].map(({ label, name, type, required, placeholder }) => (
+                  <div key={name} className="flex items-center gap-3">
+                    <label className="text-sm font-medium flex-shrink-0 w-24 text-right" style={{ color: theme.colors.textMuted }}>
+                      {label}
+                    </label>
+                    <input
+                      type={type} name={name} value={formData[name as keyof typeof formData]}
+                      onChange={handleChange} required={required}
+                      className="flex-1 px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
+                      style={{ borderColor: theme.colors.border, color: theme.colors.text }}
+                      placeholder={placeholder}
+                    />
+                  </div>
+                ))}
 
-                <div>
-                  <label className="block text-sm font-medium mb-1" style={{ color: theme.colors.text }}>
-                    Empresa (opcional)
-                  </label>
-                  <input
-                    type="text" name="company" value={formData.company} onChange={handleChange}
-                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
-                    style={{ borderColor: theme.colors.border, color: theme.colors.text }}
-                    placeholder="Nombre de tu empresa"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1" style={{ color: theme.colors.text }}>
-                    Email
-                  </label>
-                  <input
-                    type="email" name="email" value={formData.email} onChange={handleChange} required
-                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
-                    style={{ borderColor: theme.colors.border, color: theme.colors.text }}
-                    placeholder="tu@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1" style={{ color: theme.colors.text }}>
-                    Teléfono (opcional)
-                  </label>
-                  <input
-                    type="tel" name="phone" value={formData.phone} onChange={handleChange}
-                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors text-sm"
-                    style={{ borderColor: theme.colors.border, color: theme.colors.text }}
-                    placeholder="+54 9..."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1" style={{ color: theme.colors.text }}>
+                <div className="flex items-start gap-3 flex-1">
+                  <label className="text-sm font-medium flex-shrink-0 w-24 text-right pt-2" style={{ color: theme.colors.textMuted }}>
                     Mensaje
                   </label>
                   <textarea
-                    name="message" value={formData.message} onChange={handleChange} required rows={3}
-                    className="w-full px-3 py-2 rounded-lg border bg-transparent transition-colors resize-none text-sm"
-                    style={{ borderColor: theme.colors.border, color: theme.colors.text }}
+                    name="message" value={formData.message} onChange={handleChange} required
+                    className="flex-1 h-full px-3 py-2 rounded-lg border bg-transparent transition-colors resize-none text-sm"
+                    style={{ borderColor: theme.colors.border, color: theme.colors.text, minHeight: "90px" }}
                     placeholder="¿En qué podemos ayudarte?"
                   />
                 </div>
@@ -310,7 +279,7 @@ export function Contact() {
 
                 <button
                   type="submit" disabled={isSubmitting}
-                  className="w-full py-2 rounded-lg font-semibold text-sm transition-all duration-200 disabled:opacity-50"
+                  className="w-full py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 disabled:opacity-50"
                   style={{ backgroundColor: theme.colors.accent, color: "#FFFFFF" }}
                 >
                   {isSubmitting ? "Enviando..." : "Enviar mensaje"}

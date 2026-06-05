@@ -179,7 +179,7 @@ export function TrabajosSection({ projects }: { projects: Project[] }) {
   return (
     <section
       id="trabajos"
-      className="relative mx-4 md:mx-6 my-3 overflow-hidden"
+      className="relative mx-4 md:mx-6 my-3"
       style={{
         borderRadius: "24px",
         boxShadow: "0 8px 40px rgba(42, 37, 16, 0.10)",

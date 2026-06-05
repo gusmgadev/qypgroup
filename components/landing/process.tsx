@@ -19,10 +19,10 @@ function StepCard({ step }: { step: typeof theme.process.steps[number] }) {
     >
       {/* Número */}
       <div
-        className="relative z-10 flex items-center justify-center mb-4 font-extrabold text-xl"
+        className="relative z-10 flex items-center justify-center mb-4 font-extrabold text-3xl"
         style={{
-          width: "64px",
-          height: "64px",
+          width: "80px",
+          height: "80px",
           borderRadius: "50%",
           backgroundColor: hovered ? theme.colors.accent : "#FFFFFF",
           color: hovered ? "#FFFFFF" : theme.colors.accent,
@@ -53,7 +53,7 @@ function StepCard({ step }: { step: typeof theme.process.steps[number] }) {
         }}
       >
         <h3
-          className="text-base font-bold mb-2"
+          className="text-lg font-bold mb-2"
           style={{
             color: hovered ? "#FFFFFF" : theme.colors.dark,
             transition: "color 0.30s ease",
@@ -79,15 +79,13 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative mx-4 md:mx-6 my-3 overflow-hidden"
+      className="relative mb-3"
       style={{
-        borderRadius: "24px",
-        boxShadow: "0 8px 40px rgba(42, 37, 16, 0.18)",
         scrollMarginTop: "0",
       }}
     >
       {/* ── ZONA 1: BANNER ───────────────────────────────────────────── */}
-      <div className="relative overflow-hidden" style={{ borderRadius: "24px 24px 0 0" }}>
+      <div className="relative overflow-hidden">
         <img
           src={theme.process.banner.image}
           alt=""
@@ -198,11 +196,28 @@ export function Process() {
               <StepCard key={index} step={step} />
             ))}
           </div>
+
+          {/* CTA inferior */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+            <p className="text-base font-medium text-center" style={{ color: theme.colors.textMuted }}>
+              ¿Listo para dar el primer paso? Convertimos tu necesidad en un proyecto concreto.
+            </p>
+            <a
+              href="#contact"
+              className="flex-shrink-0 px-6 py-2.5 rounded-full font-semibold text-sm text-white transition-all duration-200 hover:scale-[1.04]"
+              style={{
+                backgroundColor: theme.colors.accent,
+                boxShadow: "0 4px 14px rgba(232,105,26,0.40)",
+              }}
+            >
+              Contactanos →
+            </a>
+          </div>
         </div>
       </div>
 
       {/* ── ZONA 3: STATS BAR ────────────────────────────────────────── */}
-      <div style={{ backgroundColor: theme.colors.primary, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
+      <div style={{ backgroundColor: theme.colors.primary, padding: "20px 24px" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
           {theme.process.stats.map((stat, i) => {
             const StatIcon = statIconMap[stat.icon]
