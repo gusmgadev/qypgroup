@@ -19,10 +19,10 @@ function StepCard({ step }: { step: typeof theme.process.steps[number] }) {
     >
       {/* Número */}
       <div
-        className="relative z-10 flex items-center justify-center mb-4 font-extrabold text-3xl"
+        className="relative z-10 flex items-center justify-center mb-4 font-extrabold text-2xl"
         style={{
-          width: "80px",
-          height: "80px",
+          width: "76px",
+          height: "76px",
           borderRadius: "50%",
           backgroundColor: hovered ? theme.colors.accent : "#FFFFFF",
           color: hovered ? "#FFFFFF" : theme.colors.accent,
