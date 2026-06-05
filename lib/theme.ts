@@ -126,19 +126,19 @@ export const theme = {
 services: [
       {
         title: "Obras y montajes",
-        description: "Ejecutamos obras civiles e industriales de principio a fin: locaciones, piletas de contención, cercos, gasoductos, oleoductos, acueductos, estructuras metálicas, estaciones compresoras, válvulas de corte (linebreak) y estaciones distribuidoras (citygates).",
+        description: "Ejecutamos obras civiles e industriales de principio a fin: locaciones, piletas para contención, cercos, gasoductos, oleoductos, acueductos, estructuras metálicas, estaciones compresoras, válvulas de corte y estaciones distribuidoras.",
         icon: "truck",
         image: "/images/servicios/obras.jpg",
         details: [
           "Construccion de locaciones",
-          "Construccion de piletas de contencion de derrames",
-          "Provision y armado de de Naves - Gaplones - Tinglados - Techos - Estructuras Metálicas",
+          "Construccion de piletas para contencion de derrames",
+          "Provision y armado de Naves - Gaplones - Tinglados - Techos - Estructuras Metálicas",
           "  * (Con set de planos y memoria de cálculo)",
           "Cercos perimetrales",
           "Gasoductos , oleoductos y acueductos",
           "Estaciones compresoras",
-          "Valvulas de corte en gasoductos (Linebreak)",
-          "Estaciones distribuidras(Citygates)",
+          "Valvulas de corte en gasoductos",
+          "Estaciones distribuidras",
           "Obras civiles"
         ]
       },
@@ -189,8 +189,47 @@ services: [
     ],
   },
 
+  // ── SERVICIOS SECTION ──────────────────────────────────────────────────────
+  services: {
+    banner: {
+      eyebrow:     "SERVICIOS",
+      title:       "Soluciones para la industria de la explotación, Oil&Gas y Minería",
+      description: "Acompañamos cada etapa de tu proyecto con equipos propios, personal capacitado y experiencia comprobada en la industria petrolera, minera y gasífera.",
+      image:       "/images/hero/hero-5.jpg",
+    },
+    features: [
+      { icon: "Shield", label: "Seguridad ante todo" },
+      { icon: "Users",  label: "Equipo profesional y capacitado" },
+      { icon: "Clock",  label: "Cumplimos tiempos, entregamos resultados" },
+    ],
+    stats: [
+      { icon: "Award",  line1: "Experiencia",     line2: "Comprobada" },
+      { icon: "Wrench", line1: "Equipos propios", line2: "y tecnología" },
+      { icon: "Star",   line1: "Compromiso con",  line2: "la calidad" },
+      { icon: "MapPin", line1: "Cobertura en",    line2: "múltiples regiones" },
+    ],
+  },
+
   // ── PROCESO ────────────────────────────────────────────────────────────────
   process: {
+    banner: {
+      eyebrow:     "PROCESO",
+      title:       "Nuestro proceso de trabajo",
+      description: "Cada proyecto sigue una metodología clara: relevamiento, propuesta técnica, ejecución y seguimiento post-obra.",
+      image:       "/images/hero/hero-1.jpg",
+      imageRight:  "/images/hero/hero-3.jpg",
+    },
+    features: [
+      { icon: "Search",   label: "Relevamiento en campo" },
+      { icon: "FileText", label: "Propuesta técnica" },
+      { icon: "Zap",      label: "Ejecución eficiente" },
+    ],
+    stats: [
+      { icon: "Award",  line1: "Experiencia",     line2: "Comprobada" },
+      { icon: "Wrench", line1: "Equipos propios", line2: "y tecnología" },
+      { icon: "Star",   line1: "Compromiso con",  line2: "la calidad" },
+      { icon: "MapPin", line1: "Cobertura en",    line2: "múltiples regiones" },
+    ],
     steps: [
       {
         number: "01",
@@ -212,6 +251,28 @@ services: [
         title: "Entrega y Seguimiento",
         description: "Hacemos entrega formal con documentación completa y brindamos soporte post-obra para garantizar la continuidad operativa.",
       },
+    ],
+  },
+
+  // ── TRABAJOS ───────────────────────────────────────────────────────────────
+  trabajos: {
+    banner: {
+      eyebrow:     "TRABAJOS",
+      title:       "Proyectos realizados en la industria",
+      description: "Conocé los trabajos que realizamos en el sector petrolero, minero y gasífero de la región.",
+      image:       "/images/hero/hero-4.jpg",
+      imageRight:  "/images/servicios/servicios.jpg",
+    },
+    features: [
+      { icon: "Shield",   label: "Trabajos certificados" },
+      { icon: "Folder",   label: "Documentación completa" },
+      { icon: "MapPin",   label: "En toda la región" },
+    ],
+    stats: [
+      { icon: "Award",  line1: "Experiencia",     line2: "Comprobada" },
+      { icon: "Wrench", line1: "Equipos propios", line2: "y tecnología" },
+      { icon: "Star",   line1: "Compromiso con",  line2: "la calidad" },
+      { icon: "MapPin", line1: "Cobertura en",    line2: "múltiples regiones" },
     ],
   },
 
@@ -253,9 +314,27 @@ services: [
 
   // ── CONTACTO ───────────────────────────────────────────────────────────────
   contact: {
-    phone:    "+54 2974137806",
-    email:    "qypgroup@gmail.com",
-    whatsapp: "5492974137806",          // sin + ni espacios — formato para wa.me/
+    banner: {
+      eyebrow:     "CONTACTO",
+      title:       "Hablemos de tu proyecto",
+      description: "Escribinos y te respondemos a la brevedad. Estamos para ayudarte.",
+      image:       "/images/contacto/contacto.jpg",
+      imageRight:  "/images/hero/hero-2.jpg",
+    },
+    features: [
+      { icon: "MessageCircle", label: "Respuesta rápida" },
+      { icon: "Phone",         label: "Atención personalizada" },
+      { icon: "MapPin",        label: "Rada Tilly, Chubut" },
+    ],
+    stats: [
+      { icon: "Award",  line1: "Experiencia",     line2: "Comprobada" },
+      { icon: "Wrench", line1: "Equipos propios", line2: "y tecnología" },
+      { icon: "Star",   line1: "Compromiso con",  line2: "la calidad" },
+      { icon: "MapPin", line1: "Cobertura en",    line2: "múltiples regiones" },
+    ],
+    phone:    "54 297 439-5832",
+    email:    "info@qypenterprisegroup.com",
+    whatsapp: "54 297 439-5832",          // sin + ni espacios — formato para wa.me/
     address:  "Rada Tilly, Chubut, Argentina",
   },
 

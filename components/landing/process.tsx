@@ -1,9 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
+import { Home, Search, FileText, Zap, Award, Wrench, Star, MapPin } from "lucide-react"
 import { theme } from "@/lib/theme"
 
-function StepCard({ step, index }: { step: typeof theme.process.steps[number]; index: number }) {
+const featureIconMap: Record<string, any> = { Search, FileText, Zap }
+const statIconMap: Record<string, any> = { Award, Wrench, Star, MapPin }
+
+function StepCard({ step }: { step: typeof theme.process.steps[number] }) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -19,11 +24,12 @@ function StepCard({ step, index }: { step: typeof theme.process.steps[number]; i
           width: "64px",
           height: "64px",
           borderRadius: "50%",
-          backgroundColor: hovered ? "#FFFFFF" : theme.colors.accent,
-          color: hovered ? theme.colors.accent : "#FFFFFF",
+          backgroundColor: hovered ? theme.colors.accent : "#FFFFFF",
+          color: hovered ? "#FFFFFF" : theme.colors.accent,
+          border: `2px solid ${theme.colors.accent}`,
           boxShadow: hovered
-            ? `0 0 0 6px rgba(255,255,255,0.15), 0 8px 24px rgba(232,105,26,0.5)`
-            : `0 0 0 6px rgba(232,105,26,0.18), 0 4px 16px rgba(232,105,26,0.35)`,
+            ? "0 8px 24px rgba(232,105,26,0.35)"
+            : "0 4px 12px rgba(0,0,0,0.08)",
           flexShrink: 0,
           transition: "all 0.30s ease",
         }}
@@ -35,17 +41,13 @@ function StepCard({ step, index }: { step: typeof theme.process.steps[number]; i
       <div
         className="w-full p-5 flex-1 flex flex-col"
         style={{
-          backgroundColor: hovered ? "rgba(232,105,26,0.18)" : "rgba(255,255,255,0.06)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-          border: hovered
-            ? `0.5px solid rgba(232,105,26,0.60)`
-            : `0.5px solid rgba(203,197,138,0.20)`,
+          backgroundColor: hovered ? theme.colors.accent : "#FFFFFF",
+          border: `1px solid ${hovered ? theme.colors.accent : theme.colors.border}`,
           borderRadius: "16px",
           transform: hovered ? "translateY(-8px)" : "translateY(0)",
           boxShadow: hovered
             ? "0 16px 32px rgba(232,105,26,0.20)"
-            : "0 2px 8px rgba(0,0,0,0.10)",
+            : "0 2px 8px rgba(0,0,0,0.06)",
           transition: "all 0.30s ease",
           minHeight: "160px",
         }}
@@ -53,7 +55,7 @@ function StepCard({ step, index }: { step: typeof theme.process.steps[number]; i
         <h3
           className="text-base font-bold mb-2"
           style={{
-            color: hovered ? theme.colors.accent : "#FFFFFF",
+            color: hovered ? "#FFFFFF" : theme.colors.dark,
             transition: "color 0.30s ease",
           }}
         >
@@ -62,7 +64,7 @@ function StepCard({ step, index }: { step: typeof theme.process.steps[number]; i
         <p
           className="text-sm leading-relaxed"
           style={{
-            color: hovered ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.65)",
+            color: hovered ? "rgba(255,255,255,0.90)" : theme.colors.textMuted,
             transition: "color 0.30s ease",
           }}
         >
@@ -77,46 +79,123 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative py-10 px-4 md:px-7 mx-4 md:mx-6 my-3 overflow-hidden"
+      className="relative mx-4 md:mx-6 my-3 overflow-hidden"
       style={{
         borderRadius: "24px",
-        backgroundColor: theme.colors.dark,
         boxShadow: "0 8px 40px rgba(42, 37, 16, 0.18)",
-        scrollMarginTop: "50px",
+        scrollMarginTop: "0",
       }}
     >
-      {/* Textura sutil */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(ellipse at 20% 50%, rgba(232,105,26,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(203,197,138,0.06) 0%, transparent 60%)",
-          borderRadius: "24px",
-        }}
-      />
+      {/* ── ZONA 1: BANNER ───────────────────────────────────────────── */}
+      <div className="relative overflow-hidden" style={{ borderRadius: "24px 24px 0 0" }}>
+        <img
+          src={theme.process.banner.image}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "brightness(0.18)", transform: "scale(1.05)" }}
+        />
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(42, 37, 16, 0.80)" }} />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: "#FFFFFF" }}>
-            Nuestro Proceso
-          </h2>
-          <p className="text-base md:text-lg font-semibold max-w-4xl mx-auto" style={{ color: theme.colors.primary }}>
-            Proveemos soluciones para las necesidades de la industria petrolera, gasífera y minera de la región. En cada etapa del proceso de extracción, producción, transporte y almacenaje.
-          </p>
+        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-16">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-8"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.25)",
+              color: "#FFFFFF",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }}
+          >
+            <Home size={14} />
+            Home
+          </Link>
+          <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 items-center">
+
+            {/* Columna izquierda */}
+            <div>
+              <p style={{
+                color: theme.colors.accent,
+                fontSize: "11px",
+                fontWeight: 700,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                marginBottom: "12px",
+              }}>
+                {theme.process.banner.eyebrow}
+              </p>
+              <h2
+                className="text-4xl md:text-5xl font-bold"
+                style={{ color: "#FFFFFF", lineHeight: "1.15" }}
+              >
+                {theme.process.banner.title}
+              </h2>
+              <div style={{
+                width: "40px", height: "3px",
+                backgroundColor: theme.colors.accent,
+                marginTop: "16px", marginBottom: "16px",
+              }} />
+              <p className="text-base" style={{ color: "rgba(255,255,255,0.80)", maxWidth: "500px", lineHeight: "1.7" }}>
+                {theme.process.banner.description}
+              </p>
+
+              {/* Feature badges */}
+              <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                {theme.process.features.map((f, i) => {
+                  const FeatureIcon = featureIconMap[f.icon]
+                  return (
+                    <div key={i} className="flex items-center gap-2">
+                      <div
+                        className="flex items-center justify-center flex-shrink-0"
+                        style={{
+                          width: "32px", height: "32px",
+                          borderRadius: "50%",
+                          backgroundColor: "rgba(232,105,26,0.20)",
+                          border: "1px solid rgba(232,105,26,0.40)",
+                        }}
+                      >
+                        {FeatureIcon && <FeatureIcon size={15} color={theme.colors.accent} />}
+                      </div>
+                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
+                        {f.label}
+                      </span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Columna derecha — imagen con esquinas naranja */}
+            <div className="relative hidden md:block">
+              <div className="absolute z-10" style={{ top: "-8px", left: "-8px", width: "24px", height: "24px", backgroundColor: theme.colors.accent }} />
+              <div className="absolute z-10" style={{ bottom: "-8px", right: "-8px", width: "24px", height: "24px", backgroundColor: theme.colors.accent }} />
+              <img
+                src={theme.process.banner.imageRight}
+                alt="Proceso QYP"
+                className="w-full object-cover"
+                style={{ height: "280px", borderRadius: "12px" }}
+              />
+            </div>
+
+          </div>
         </div>
+      </div>
 
-        {/* Steps */}
-        <div className="relative">
+      {/* ── ZONA 2: STEPS ────────────────────────────────────────────── */}
+      <div style={{ backgroundColor: theme.colors.background, padding: "40px 24px" }}>
+        <div className="max-w-6xl mx-auto relative">
           {/* Línea conectora — solo desktop */}
           <div
-            className="hidden md:block absolute top-10 left-0 right-0 h-px"
+            className="hidden md:block absolute left-0 right-0 h-px"
             style={{
+              top: "32px",
               background: `linear-gradient(to right, transparent 0%, ${theme.colors.accent} 15%, ${theme.colors.accent} 85%, transparent 100%)`,
               opacity: 0.35,
               zIndex: 0,
             }}
           />
-
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 items-stretch">
             {theme.process.steps.map((step, index) => (
               <StepCard key={index} step={step} index={index} />
@@ -124,6 +203,25 @@ export function Process() {
           </div>
         </div>
       </div>
+
+      {/* ── ZONA 3: STATS BAR ────────────────────────────────────────── */}
+      <div style={{ backgroundColor: theme.colors.dark, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          {theme.process.stats.map((stat, i) => {
+            const StatIcon = statIconMap[stat.icon]
+            return (
+              <div key={i} className="flex items-center gap-3">
+                {StatIcon && <StatIcon size={22} color={theme.colors.accent} />}
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: "#FFFFFF" }}>{stat.line1}</p>
+                  <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>{stat.line2}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
     </section>
   )
 }
