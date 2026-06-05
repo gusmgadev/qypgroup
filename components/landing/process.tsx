@@ -198,7 +198,7 @@ export function Process() {
           />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 items-stretch">
             {theme.process.steps.map((step, index) => (
-              <StepCard key={index} step={step} index={index} />
+              <StepCard key={index} step={step} />
             ))}
           </div>
         </div>
