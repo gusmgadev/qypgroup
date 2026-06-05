@@ -34,14 +34,15 @@ function Modal({ service, onClose }: { service: Service; onClose: () => void }) 
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8"
       style={{ backgroundColor: "rgba(0,0,0,0.65)", backdropFilter: "blur(6px)" }}
       onClick={onClose}
     >
       <div
-        className="relative w-full"
+        className="relative w-full flex flex-col"
         style={{
-          maxWidth: useColumns ? "800px" : "480px",
+          maxWidth: "1200px",
+          maxHeight: "90vh",
           backgroundColor: "#FFFFFF",
           borderRadius: "24px",
           boxShadow: "12px 16px 0px rgba(232,105,26,0.6), 0 24px 48px rgba(0,0,0,0.40)",
@@ -51,20 +52,20 @@ function Modal({ service, onClose }: { service: Service; onClose: () => void }) 
       >
         <div className="absolute top-0 left-0 z-10" style={{ width: 16, height: 16, backgroundColor: theme.colors.accent }} />
 
-        <div className="relative overflow-hidden" style={{ height: "140px" }}>
+        <div className="relative overflow-hidden flex-shrink-0" style={{ height: "220px" }}>
           <img src={(service as any).image} alt={service.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(42,37,16,0.75) 0%, transparent 55%)" }} />
-          <h2 className="absolute bottom-3 left-5 text-xl font-bold" style={{ color: "#FFFFFF" }}>
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(42,37,16,0.80) 0%, transparent 55%)" }} />
+          <h2 className="absolute bottom-4 left-6 text-2xl font-bold" style={{ color: "#FFFFFF" }}>
             {service.title}
           </h2>
         </div>
 
-        <div className="px-5 py-4">
-          <p className="text-sm mb-3" style={{ color: theme.colors.textMuted }}>
+        <div className="px-7 py-5 overflow-y-auto">
+          <p className="text-base mb-4" style={{ color: theme.colors.textMuted, lineHeight: "1.7" }}>
             {service.description}
           </p>
-          <div style={{ borderTop: `1px solid ${theme.colors.border}` }} className="pt-3">
-            <ul style={{ columnCount: useColumns ? 2 : 1, columnGap: "24px" }} className="space-y-1.5">
+          <div style={{ borderTop: `1px solid ${theme.colors.border}` }} className="pt-4">
+            <ul style={{ columnCount: useColumns ? 2 : 1, columnGap: "32px" }} className="space-y-2">
               {details.map((detail, idx) => (
                 <DetailItem key={idx} detail={detail} />
               ))}
@@ -74,10 +75,10 @@ function Modal({ service, onClose }: { service: Service; onClose: () => void }) 
 
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 flex items-center justify-center rounded-full"
-          style={{ backgroundColor: theme.colors.dark, color: "#FFFFFF", width: "32px", height: "32px" }}
+          className="absolute top-4 right-4 flex items-center justify-center rounded-full"
+          style={{ backgroundColor: theme.colors.dark, color: "#FFFFFF", width: "36px", height: "36px" }}
         >
-          <X size={16} />
+          <X size={18} />
         </button>
       </div>
     </div>
@@ -105,30 +106,30 @@ function ServiceCard({ service, onClick }: { service: Service; onClick: () => vo
       }}
     >
       {/* Header caqui: icono + título + accent line */}
-      <div style={{ backgroundColor: theme.colors.primary, padding: "16px 20px" }}>
-        <div className="flex items-center gap-3">
+      <div style={{ backgroundColor: theme.colors.primary, padding: "10px 14px" }}>
+        <div className="flex items-center gap-2">
           <div
             className="flex items-center justify-center flex-shrink-0"
-            style={{ width: "40px", height: "40px", backgroundColor: theme.colors.dark, borderRadius: "8px" }}
+            style={{ width: "30px", height: "30px", backgroundColor: theme.colors.dark, borderRadius: "6px" }}
           >
-            <IconComponent size={20} color="#FFFFFF" />
+            <IconComponent size={15} color="#FFFFFF" />
           </div>
-          <h3 className="font-bold text-base" style={{ color: theme.colors.dark }}>
+          <h3 className="font-bold text-sm" style={{ color: theme.colors.dark }}>
             {service.title}
           </h3>
         </div>
-        <div style={{ width: "30px", height: "3px", backgroundColor: theme.colors.accent, marginTop: "10px" }} />
+        <div style={{ width: "24px", height: "2px", backgroundColor: theme.colors.accent, marginTop: "7px" }} />
       </div>
 
       {/* Descripción */}
-      <div style={{ padding: "14px 20px" }}>
-        <p className="text-sm" style={{ color: theme.colors.textMuted, lineHeight: "1.6" }}>
+      <div style={{ padding: "8px 14px" }}>
+        <p className="text-xs" style={{ color: theme.colors.textMuted, lineHeight: "1.5" }}>
           {service.description}
         </p>
       </div>
 
       {/* Imagen */}
-      <div className="overflow-hidden" style={{ height: "150px" }}>
+      <div className="overflow-hidden" style={{ height: "100px" }}>
         <img
           src={(service as any).image}
           alt={service.title}
@@ -141,9 +142,9 @@ function ServiceCard({ service, onClick }: { service: Service; onClick: () => vo
       </div>
 
       {/* Botón outlined */}
-      <div style={{ padding: "12px 20px 16px" }}>
+      <div style={{ padding: "8px 14px 10px" }}>
         <span
-          className="inline-block text-sm font-semibold px-4 py-1.5 rounded-full"
+          className="inline-block text-xs font-semibold px-3 py-1 rounded-full"
           style={{
             backgroundColor: hovered ? theme.colors.accent : "transparent",
             color: hovered ? "#FFFFFF" : theme.colors.accent,
@@ -182,10 +183,10 @@ export function Services() {
         />
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(42, 37, 16, 0.80)" }} />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-16">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-3">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-8"
+            className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-2"
             style={{
               backgroundColor: "rgba(255,255,255,0.12)",
               border: "1px solid rgba(255,255,255,0.25)",
@@ -197,9 +198,9 @@ export function Services() {
             <Home size={14} />
             Home
           </Link>
-          <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_110px_220px] gap-6 items-center">
 
-            {/* Columna izquierda */}
+            {/* Título y texto — izquierda */}
             <div>
               <p style={{
                 color: theme.colors.accent,
@@ -207,12 +208,12 @@ export function Services() {
                 fontWeight: 700,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                marginBottom: "12px",
+                marginBottom: "4px",
               }}>
                 {theme.services.banner.eyebrow}
               </p>
               <h2
-                className="text-4xl md:text-5xl font-bold"
+                className="text-2xl md:text-3xl font-bold"
                 style={{ color: "#FFFFFF", lineHeight: "1.15" }}
               >
                 {theme.services.banner.title}
@@ -220,48 +221,45 @@ export function Services() {
               <div style={{
                 width: "40px", height: "3px",
                 backgroundColor: theme.colors.accent,
-                marginTop: "16px", marginBottom: "16px",
+                marginTop: "8px", marginBottom: "8px",
               }} />
-              <p className="text-base" style={{ color: "rgba(255,255,255,0.80)", maxWidth: "500px", lineHeight: "1.7" }}>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.80)", lineHeight: "1.6" }}>
                 {theme.services.banner.description}
               </p>
-
-              {/* Feature badges */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                {theme.services.features.map((f, i) => {
-                  const FeatureIcon = featureIconMap[f.icon]
-                  return (
-                    <div key={i} className="flex items-center gap-2">
-                      <div
-                        className="flex items-center justify-center flex-shrink-0"
-                        style={{
-                          width: "32px", height: "32px",
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(232,105,26,0.20)",
-                          border: "1px solid rgba(232,105,26,0.40)",
-                        }}
-                      >
-                        {FeatureIcon && <FeatureIcon size={15} color={theme.colors.accent} />}
-                      </div>
-                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
-                        {f.label}
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
             </div>
 
-            {/* Columna derecha — imagen con esquinas naranja */}
-            <div className="relative hidden md:block">
-              <div className="absolute z-10" style={{ top: "-8px", left: "-8px", width: "24px", height: "24px", backgroundColor: theme.colors.accent }} />
-              <div className="absolute z-10" style={{ bottom: "-8px", right: "-8px", width: "24px", height: "24px", backgroundColor: theme.colors.accent }} />
+            {/* Foto cuadrada — centro */}
+            <div className="hidden md:block flex-shrink-0">
               <img
                 src="/images/servicios/obras.jpg"
                 alt="Servicios QYP"
-                className="w-full object-cover"
-                style={{ height: "280px", borderRadius: "12px" }}
+                style={{ width: "110px", height: "110px", borderRadius: "10px", objectFit: "cover" }}
               />
+            </div>
+
+            {/* Features apilados — derecha */}
+            <div className="hidden md:flex flex-col gap-3">
+              {theme.services.features.map((f, i) => {
+                const FeatureIcon = featureIconMap[f.icon]
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <div
+                      className="flex items-center justify-center flex-shrink-0"
+                      style={{
+                        width: "30px", height: "30px",
+                        borderRadius: "50%",
+                        backgroundColor: "rgba(232,105,26,0.20)",
+                        border: "1px solid rgba(232,105,26,0.40)",
+                      }}
+                    >
+                      {FeatureIcon && <FeatureIcon size={14} color={theme.colors.accent} />}
+                    </div>
+                    <span className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
+                      {f.label}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
 
           </div>
@@ -278,16 +276,20 @@ export function Services() {
       </div>
 
       {/* ── ZONA 3: STATS BAR ────────────────────────────────────────── */}
-      <div style={{ backgroundColor: theme.colors.dark, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
+      <div style={{ backgroundColor: theme.colors.primary, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
           {theme.services.stats.map((stat, i) => {
             const StatIcon = statIconMap[stat.icon]
             return (
-              <div key={i} className="flex items-center gap-3">
-                {StatIcon && <StatIcon size={22} color={theme.colors.accent} />}
+              <div key={i} className="flex items-center gap-3" style={{
+                borderRight: i < theme.services.stats.length - 1 ? "1px solid rgba(255,255,255,0.55)" : "none",
+                paddingRight: i < theme.services.stats.length - 1 ? "20px" : "0",
+                justifyContent: "center",
+              }}>
+                {StatIcon && <StatIcon size={22} color={theme.colors.dark} />}
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: "#FFFFFF" }}>{stat.line1}</p>
-                  <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>{stat.line2}</p>
+                  <p className="text-sm font-semibold" style={{ color: theme.colors.dark }}>{stat.line1}</p>
+                  <p className="text-xs" style={{ color: theme.colors.textMuted }}>{stat.line2}</p>
                 </div>
               </div>
             )

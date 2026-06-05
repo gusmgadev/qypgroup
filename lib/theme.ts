@@ -170,7 +170,6 @@ services: [
           " * Chupe",
           " * Porta Contenedores",
           " * Volcadores",
-          " * ",
           "Camiones Tractores",
           " * Carretones",
           " * Sempiplayo",

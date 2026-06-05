@@ -97,10 +97,10 @@ export function Process() {
         />
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(42, 37, 16, 0.80)" }} />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-16">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-3">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-8"
+            className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-2"
             style={{
               backgroundColor: "rgba(255,255,255,0.12)",
               border: "1px solid rgba(255,255,255,0.25)",
@@ -112,9 +112,9 @@ export function Process() {
             <Home size={14} />
             Home
           </Link>
-          <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_110px_220px] gap-6 items-center">
 
-            {/* Columna izquierda */}
+            {/* Título y texto — izquierda */}
             <div>
               <p style={{
                 color: theme.colors.accent,
@@ -122,12 +122,12 @@ export function Process() {
                 fontWeight: 700,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                marginBottom: "12px",
+                marginBottom: "4px",
               }}>
                 {theme.process.banner.eyebrow}
               </p>
               <h2
-                className="text-4xl md:text-5xl font-bold"
+                className="text-2xl md:text-3xl font-bold"
                 style={{ color: "#FFFFFF", lineHeight: "1.15" }}
               >
                 {theme.process.banner.title}
@@ -135,48 +135,45 @@ export function Process() {
               <div style={{
                 width: "40px", height: "3px",
                 backgroundColor: theme.colors.accent,
-                marginTop: "16px", marginBottom: "16px",
+                marginTop: "8px", marginBottom: "8px",
               }} />
-              <p className="text-base" style={{ color: "rgba(255,255,255,0.80)", maxWidth: "500px", lineHeight: "1.7" }}>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.80)", lineHeight: "1.6" }}>
                 {theme.process.banner.description}
               </p>
-
-              {/* Feature badges */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                {theme.process.features.map((f, i) => {
-                  const FeatureIcon = featureIconMap[f.icon]
-                  return (
-                    <div key={i} className="flex items-center gap-2">
-                      <div
-                        className="flex items-center justify-center flex-shrink-0"
-                        style={{
-                          width: "32px", height: "32px",
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(232,105,26,0.20)",
-                          border: "1px solid rgba(232,105,26,0.40)",
-                        }}
-                      >
-                        {FeatureIcon && <FeatureIcon size={15} color={theme.colors.accent} />}
-                      </div>
-                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
-                        {f.label}
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
             </div>
 
-            {/* Columna derecha — imagen con esquinas naranja */}
-            <div className="relative hidden md:block">
-              <div className="absolute z-10" style={{ top: "-8px", left: "-8px", width: "24px", height: "24px", backgroundColor: theme.colors.accent }} />
-              <div className="absolute z-10" style={{ bottom: "-8px", right: "-8px", width: "24px", height: "24px", backgroundColor: theme.colors.accent }} />
+            {/* Foto cuadrada — centro */}
+            <div className="hidden md:block flex-shrink-0">
               <img
                 src={theme.process.banner.imageRight}
                 alt="Proceso QYP"
-                className="w-full object-cover"
-                style={{ height: "280px", borderRadius: "12px" }}
+                style={{ width: "110px", height: "110px", borderRadius: "10px", objectFit: "cover" }}
               />
+            </div>
+
+            {/* Features apilados — derecha */}
+            <div className="hidden md:flex flex-col gap-3">
+              {theme.process.features.map((f, i) => {
+                const FeatureIcon = featureIconMap[f.icon]
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <div
+                      className="flex items-center justify-center flex-shrink-0"
+                      style={{
+                        width: "30px", height: "30px",
+                        borderRadius: "50%",
+                        backgroundColor: "rgba(232,105,26,0.20)",
+                        border: "1px solid rgba(232,105,26,0.40)",
+                      }}
+                    >
+                      {FeatureIcon && <FeatureIcon size={14} color={theme.colors.accent} />}
+                    </div>
+                    <span className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
+                      {f.label}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
 
           </div>
@@ -205,16 +202,20 @@ export function Process() {
       </div>
 
       {/* ── ZONA 3: STATS BAR ────────────────────────────────────────── */}
-      <div style={{ backgroundColor: theme.colors.dark, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
+      <div style={{ backgroundColor: theme.colors.primary, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
           {theme.process.stats.map((stat, i) => {
             const StatIcon = statIconMap[stat.icon]
             return (
-              <div key={i} className="flex items-center gap-3">
-                {StatIcon && <StatIcon size={22} color={theme.colors.accent} />}
+              <div key={i} className="flex items-center gap-3" style={{
+                borderRight: i < theme.process.stats.length - 1 ? "1px solid rgba(255,255,255,0.55)" : "none",
+                paddingRight: i < theme.process.stats.length - 1 ? "20px" : "0",
+                justifyContent: "center",
+              }}>
+                {StatIcon && <StatIcon size={22} color={theme.colors.dark} />}
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: "#FFFFFF" }}>{stat.line1}</p>
-                  <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>{stat.line2}</p>
+                  <p className="text-sm font-semibold" style={{ color: theme.colors.dark }}>{stat.line1}</p>
+                  <p className="text-xs" style={{ color: theme.colors.textMuted }}>{stat.line2}</p>
                 </div>
               </div>
             )

@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ChevronLeft } from "lucide-react"
+import { Home, Shield, Folder, MapPin, Award, Wrench, Star } from "lucide-react"
 import { getProjectById } from "../../../lib/db/projects"
 import PhotoGallery from "../../../components/trabajos/photo-gallery"
-import { Navbar } from "../../../components/landing/navbar"
-import { Footer } from "../../../components/landing/footer"
 import { theme } from "../../../lib/theme"
 
 export const dynamic = "force-dynamic"
+
+const featureIconMap: Record<string, any> = { Shield, Folder, MapPin }
+const statIconMap: Record<string, any> = { Award, Wrench, Star, MapPin }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -25,124 +26,147 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   const coverUrl = photos[0]?.url ?? "/images/hero/hero-4.jpg"
 
   return (
-    <main style={{ minHeight: "100vh", backgroundColor: theme.colors.background }}>
-      <Navbar />
+    <main style={{ minHeight: "100vh", backgroundColor: "#2a2a2a" }}>
 
-      <section
-        style={{
-          position: "relative",
-          paddingTop: "180px",
-          paddingBottom: "56px",
-          overflow: "hidden",
-        }}
+      <div
+        className="mx-4 md:mx-6 my-3 overflow-hidden"
+        style={{ borderRadius: "24px", boxShadow: "0 8px 40px rgba(42,37,16,0.10)" }}
       >
-        <img
-          src={coverUrl}
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            filter: "blur(10px) brightness(0.70)",
-            transform: "scale(1.08)",
-          }}
-        />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(42, 37, 16, 0.45)" }} />
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 1,
-            maxWidth: "900px",
-            margin: "0 auto",
-            padding: "0 24px",
-          }}
-        >
-          <Link
-            href="/#trabajos"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "4px",
-              color: theme.colors.accent,
-              textDecoration: "none",
-              fontSize: theme.fontSizes.sm,
-              fontWeight: theme.fontWeights.bold,
-              marginBottom: "24px",
-              fontFamily: theme.fonts.primary,
-            }}
-          >
-            <ChevronLeft size={16} />
-            Volver a Trabajos
-          </Link>
-
-          <h1
-            style={{
-              color: "#FFFFFF",
-              fontSize: "clamp(26px, 4vw, 44px)",
-              fontWeight: theme.fontWeights.bold,
-              fontFamily: theme.fonts.primary,
-              margin: 0,
-              lineHeight: 1.2,
-            }}
-          >
-            {project.title}
-          </h1>
-        </div>
-      </section>
-
-      {/* Gallery */}
-      {photos.length > 0 && (
-        <section
-          style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            padding: "48px 24px 80px",
-          }}
-        >
-          <div
-            style={{
-              width: "48px",
-              height: "3px",
-              backgroundColor: theme.colors.accent,
-              borderRadius: "2px",
-              marginBottom: "24px",
-            }}
+        {/* ── ZONA 1: BANNER ───────────────────────────────────────────── */}
+        <div className="relative overflow-hidden" style={{ borderRadius: "24px 24px 0 0" }}>
+          <img
+            src={coverUrl}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: "brightness(0.18)", transform: "scale(1.05)" }}
           />
+          <div className="absolute inset-0" style={{ backgroundColor: "rgba(42,37,16,0.80)" }} />
 
-          {project.description && (
-            <p
+          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-3">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-2"
               style={{
-                color: theme.colors.text,
-                fontSize: theme.fontSizes.lg,
-                lineHeight: 1.7,
-                margin: "0 0 32px",
-                maxWidth: "680px",
+                backgroundColor: "rgba(255,255,255,0.12)",
+                border: "1px solid rgba(255,255,255,0.25)",
+                color: "#FFFFFF",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
               }}
             >
-              {project.description}
-            </p>
-          )}
+              <Home size={14} />
+              Home
+            </Link>
 
-          <h2
-            style={{
-              color: theme.colors.dark,
-              fontSize: theme.fontSizes.lg,
-              fontWeight: theme.fontWeights.bold,
-              fontFamily: theme.fonts.primary,
-              margin: "0 0 20px",
-            }}
-          >
-            Galería de fotos
-          </h2>
-          <PhotoGallery photos={photos} />
-        </section>
-      )}
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_110px_220px] gap-6 items-center">
 
-      <Footer />
+              {/* Título y texto */}
+              <div>
+                <p style={{
+                  color: theme.colors.accent,
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  marginBottom: "4px",
+                }}>
+                  TRABAJOS
+                </p>
+                <h1
+                  className="text-2xl md:text-3xl font-bold"
+                  style={{ color: "#FFFFFF", lineHeight: "1.15" }}
+                >
+                  {project.title}
+                </h1>
+                <div style={{
+                  width: "40px", height: "3px",
+                  backgroundColor: theme.colors.accent,
+                  marginTop: "8px", marginBottom: "8px",
+                }} />
+                {project.description && (
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.80)", lineHeight: "1.6" }}>
+                    {project.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Foto cuadrada — centro */}
+              <div className="hidden md:block flex-shrink-0">
+                <img
+                  src={coverUrl}
+                  alt={project.title}
+                  style={{ width: "110px", height: "110px", borderRadius: "10px", objectFit: "cover" }}
+                />
+              </div>
+
+              {/* Features — derecha */}
+              <div className="hidden md:flex flex-col gap-3">
+                {theme.trabajos.features.map((f, i) => {
+                  const FeatureIcon = featureIconMap[f.icon]
+                  return (
+                    <div key={i} className="flex items-center gap-2">
+                      <div
+                        className="flex items-center justify-center flex-shrink-0"
+                        style={{
+                          width: "30px", height: "30px",
+                          borderRadius: "50%",
+                          backgroundColor: "rgba(232,105,26,0.20)",
+                          border: "1px solid rgba(232,105,26,0.40)",
+                        }}
+                      >
+                        {FeatureIcon && <FeatureIcon size={14} color={theme.colors.accent} />}
+                      </div>
+                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
+                        {f.label}
+                      </span>
+                    </div>
+                  )
+                })}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* ── ZONA 2: GALERÍA ──────────────────────────────────────────── */}
+        <div style={{ backgroundColor: theme.colors.background, padding: "40px 24px" }}>
+          <div className="max-w-6xl mx-auto">
+            {photos.length > 0 ? (
+              <PhotoGallery photos={photos} />
+            ) : (
+              <p className="text-center py-12" style={{ color: theme.colors.textMuted }}>
+                Sin fotos disponibles.
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* ── ZONA 3: STATS BAR ────────────────────────────────────────── */}
+        <div style={{ backgroundColor: theme.colors.primary, borderRadius: "0 0 24px 24px", padding: "20px 24px" }}>
+          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+            {theme.trabajos.stats.map((stat, i) => {
+              const StatIcon = statIconMap[stat.icon]
+              return (
+                <div key={i} className="flex items-center gap-3" style={{
+                  borderRight: i < theme.trabajos.stats.length - 1 ? "1px solid rgba(255,255,255,0.55)" : "none",
+                  paddingRight: i < theme.trabajos.stats.length - 1 ? "20px" : "0",
+                  justifyContent: "center",
+                }}>
+                  {StatIcon && <StatIcon size={22} color={theme.colors.dark} />}
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: theme.colors.dark }}>{stat.line1}</p>
+                    <p className="text-xs" style={{ color: theme.colors.textMuted }}>{stat.line2}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+      </div>
+
     </main>
   )
 }
