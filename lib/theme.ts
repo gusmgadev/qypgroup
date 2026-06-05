@@ -243,7 +243,7 @@ services: [
       {
         number: "03",
         title: "Ejecución",
-        description: "Desplegamos equipos y personal propio, cumpliendo normativas de seguridad y manteniendo comunicación permanente con el cliente.",
+        description: "Desplegamos equipos y personal, cumpliendo normativas de seguridad y manteniendo comunicación permanente con el cliente.",
       },
       {
         number: "04",
