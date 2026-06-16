@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "../supabase"
+import { sql } from "../db"
 
 export type AdminUser = {
   id: string
@@ -9,11 +9,6 @@ export type AdminUser = {
 }
 
 export async function getUserByEmail(email: string): Promise<AdminUser | null> {
-  const { data, error } = await supabaseAdmin
-    .from("admin_users")
-    .select("*")
-    .eq("email", email)
-    .single()
-  if (error) return null
-  return data
+  const rows = await sql`SELECT * FROM admin_users WHERE email = ${email} LIMIT 1`
+  return (rows[0] as AdminUser) ?? null
 }

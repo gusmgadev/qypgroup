@@ -1,5 +1,5 @@
+import { put } from "@vercel/blob"
 import { NextRequest, NextResponse } from "next/server"
-import { supabaseAdmin } from "../../../lib/supabase"
 import { createCandidate } from "../../../lib/db/candidates"
 
 const ALLOWED_EXTENSIONS = ["pdf", "doc", "docx"]
@@ -31,23 +31,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "El archivo no puede superar 5 MB" }, { status: 400 })
     }
 
-    const storagePath = `${crypto.randomUUID()}.${ext}`
-
+    const filename = `candidate-cvs/${crypto.randomUUID()}.${ext}`
     const arrayBuffer = await file.arrayBuffer()
-    const { error: uploadError } = await supabaseAdmin.storage
-      .from("candidate-cvs")
-      .upload(storagePath, arrayBuffer, { contentType: file.type || "application/octet-stream", upsert: false })
+    const blob = await put(filename, arrayBuffer, {
+      access: "public",
+      contentType: file.type || "application/octet-stream",
+    })
 
-    if (uploadError) {
-      console.error("[candidates/upload]", uploadError)
-      return NextResponse.json({ error: `Error al subir el archivo: ${uploadError.message}` }, { status: 500 })
-    }
-
-    const { data: publicData } = supabaseAdmin.storage
-      .from("candidate-cvs")
-      .getPublicUrl(storagePath)
-
-    cv_url = publicData.publicUrl
+    cv_url = blob.url
     cv_filename = file.name
   }
 

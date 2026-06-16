@@ -1,6 +1,6 @@
+import { put } from "@vercel/blob"
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from "../../../../../auth"
-import { supabaseAdmin } from "../../../../../lib/supabase"
 import { addPhoto, deletePhoto, getPhotosByProject } from "../../../../../lib/db/photos"
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -19,22 +19,12 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   if (!file) return NextResponse.json({ error: "No se recibió archivo" }, { status: 400 })
 
   const ext = file.name.split(".").pop() ?? "jpg"
-  const storagePath = `${projectId}/${crypto.randomUUID()}.${ext}`
+  const filename = `project-photos/${projectId}/${crypto.randomUUID()}.${ext}`
 
   const arrayBuffer = await file.arrayBuffer()
-  const { error: uploadError } = await supabaseAdmin.storage
-    .from("project-photos")
-    .upload(storagePath, arrayBuffer, { contentType: file.type, upsert: false })
+  const blob = await put(filename, arrayBuffer, { access: "public", contentType: file.type })
 
-  if (uploadError) {
-    return NextResponse.json({ error: "Error al subir la imagen" }, { status: 500 })
-  }
-
-  const { data: publicData } = supabaseAdmin.storage
-    .from("project-photos")
-    .getPublicUrl(storagePath)
-
-  const photo = await addPhoto(projectId, publicData.publicUrl, storagePath, existingPhotos.length)
+  const photo = await addPhoto(projectId, blob.url, blob.url, existingPhotos.length)
   return NextResponse.json(photo, { status: 201 })
 }
 

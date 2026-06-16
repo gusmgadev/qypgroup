@@ -17,7 +17,12 @@
       "Bash(Get-ChildItem -Path \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\\\\app\\\\dashboard\" -Recurse -Force)",
       "Bash(Select-Object -Property FullName, PSIsContainer)",
       "Bash(Sort-Object FullName)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "Bash(npm uninstall *)",
+      "Bash(Remove-Item \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\\\\lib\\\\supabase.ts\")",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/api/projects)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $imgs = @\\('obras.jpg','servicios.jpg','rental.jpg'\\); foreach \\($img in $imgs\\) { $path = \"c:\\\\MGA\\\\PROYECTOSWEB\\\\qypgroup\\\\public\\\\images\\\\servicios\\\\$img\"; $bmp = [System.Drawing.Bitmap]::FromFile\\($path\\); Write-Host \"$img - $\\($bmp.Width\\)x$\\($bmp.Height\\)px\"; $bmp.Dispose\\(\\) })"
     ],
     "additionalDirectories": [
       "c:\\MGA\\PROYECTOSWEB\\qypgroup\\app\\api\\auth",

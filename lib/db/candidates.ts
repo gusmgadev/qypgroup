@@ -1,4 +1,5 @@
-import { supabaseAdmin } from "../supabase"
+import { del } from "@vercel/blob"
+import { sql } from "../db"
 
 export type Candidate = {
   id: string
@@ -16,38 +17,30 @@ export type Candidate = {
 export async function createCandidate(
   data: Omit<Candidate, "id" | "created_at" | "status">
 ): Promise<Candidate> {
-  const { data: candidate, error } = await supabaseAdmin
-    .from("candidates")
-    .insert(data)
-    .select()
-    .single()
-  if (error) throw error
-  return candidate
+  const rows = await sql`
+    INSERT INTO candidates (nombre, telefono, email, puesto, detalle, cv_url, cv_filename)
+    VALUES (
+      ${data.nombre}, ${data.telefono ?? null}, ${data.email ?? null},
+      ${data.puesto ?? null}, ${data.detalle ?? null},
+      ${data.cv_url ?? null}, ${data.cv_filename ?? null}
+    )
+    RETURNING *
+  `
+  return rows[0] as Candidate
 }
 
 export async function deleteCandidate(id: string): Promise<void> {
-  const { data } = await supabaseAdmin
-    .from("candidates")
-    .select("cv_url")
-    .eq("id", id)
-    .single()
+  const rows = await sql`SELECT cv_url FROM candidates WHERE id = ${id} LIMIT 1`
+  const cvUrl = rows[0]?.cv_url as string | null
 
-  if (data?.cv_url) {
-    const storagePath = data.cv_url.split("/candidate-cvs/").pop()
-    if (storagePath) {
-      await supabaseAdmin.storage.from("candidate-cvs").remove([storagePath])
-    }
+  if (cvUrl) {
+    await del(cvUrl)
   }
 
-  const { error } = await supabaseAdmin.from("candidates").delete().eq("id", id)
-  if (error) throw error
+  await sql`DELETE FROM candidates WHERE id = ${id}`
 }
 
 export async function getAllCandidates(): Promise<Candidate[]> {
-  const { data, error } = await supabaseAdmin
-    .from("candidates")
-    .select("*")
-    .order("created_at", { ascending: false })
-  if (error) throw error
-  return data ?? []
+  const rows = await sql`SELECT * FROM candidates ORDER BY created_at DESC`
+  return rows as Candidate[]
 }

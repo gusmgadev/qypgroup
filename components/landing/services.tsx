@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { X, Home, Truck, Wrench, Package, Shield, Users, Clock, Award, Star, MapPin } from "lucide-react"
 import { theme } from "@/lib/theme"
@@ -53,7 +54,13 @@ function Modal({ service, onClose }: { service: Service; onClose: () => void }) 
         <div className="absolute top-0 left-0 z-10" style={{ width: 16, height: 16, backgroundColor: theme.colors.accent }} />
 
         <div className="relative overflow-hidden flex-shrink-0" style={{ height: "220px" }}>
-          <img src={(service as any).image} alt={service.title} className="w-full h-full object-cover" />
+          <Image
+            src={(service as any).image}
+            alt={service.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover"
+          />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(42,37,16,0.80) 0%, transparent 55%)" }} />
           <h2 className="absolute bottom-4 left-6 text-2xl font-bold" style={{ color: "#FFFFFF" }}>
             {service.title}
@@ -129,11 +136,13 @@ function ServiceCard({ service, onClick }: { service: Service; onClick: () => vo
       </div>
 
       {/* Imagen */}
-      <div className="overflow-hidden" style={{ height: "100px" }}>
-        <img
+      <div className="overflow-hidden relative" style={{ height: "100px" }}>
+        <Image
           src={(service as any).image}
           alt={service.title}
-          className="w-full h-full object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
           style={{
             transform: hovered ? "scale(1.08)" : "scale(1)",
             transition: "transform 0.5s ease",
@@ -174,12 +183,15 @@ export function Services() {
     >
       {/* ── ZONA 1: BANNER ───────────────────────────────────────────── */}
       <div className="relative overflow-hidden" style={{ borderRadius: "24px 24px 0 0" }}>
-        <img
+        <Image
           src={theme.services.banner.image}
           alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden={true}
+          fill
+          sizes="100vw"
+          className="object-cover"
           style={{ filter: "brightness(0.18)", transform: "scale(1.05)" }}
+          priority
         />
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(42, 37, 16, 0.80)" }} />
 
@@ -230,10 +242,12 @@ export function Services() {
 
             {/* Foto cuadrada — centro */}
             <div className="hidden md:block flex-shrink-0">
-              <img
+              <Image
                 src="/images/servicios/obras.jpg"
                 alt="Servicios QYP"
-                style={{ width: "110px", height: "110px", borderRadius: "10px", objectFit: "cover" }}
+                width={110}
+                height={110}
+                style={{ borderRadius: "10px", objectFit: "cover" }}
               />
             </div>
 

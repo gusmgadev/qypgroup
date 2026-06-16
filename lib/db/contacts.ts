@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "../supabase"
+import { sql } from "../db"
 
 export type Contact = {
   id: string
@@ -34,38 +34,27 @@ export async function upsertContact(params: {
 }): Promise<{ contact: Contact; isNew: boolean }> {
   const { name, email, phone, company, message, origin = "landing" } = params
 
-  const orParts: string[] = []
-  if (email) orParts.push(`email.eq.${email}`)
-  if (phone) orParts.push(`phone.eq.${phone}`)
-
   let contact: Contact | null = null
 
-  if (orParts.length > 0) {
-    // 1) Buscar en contacts por email o teléfono
-    const { data: contactMatch } = await supabaseAdmin
-      .from("contacts")
-      .select("*")
-      .or(orParts.join(","))
-      .limit(1)
-      .maybeSingle()
-    contact = contactMatch
+  if (email || phone) {
+    const contactRows = await sql`
+      SELECT * FROM contacts
+      WHERE (${email ?? null}::text IS NOT NULL AND email = ${email ?? null}::text)
+         OR (${phone ?? null}::text IS NOT NULL AND phone = ${phone ?? null}::text)
+      LIMIT 1
+    `
+    contact = (contactRows[0] as Contact) ?? null
 
-    // 2) Si no encontró en contacts, buscar en mensajes previos
     if (!contact) {
-      const { data: msgMatch } = await supabaseAdmin
-        .from("contact_messages")
-        .select("contact_id")
-        .or(orParts.join(","))
-        .limit(1)
-        .maybeSingle()
-
-      if (msgMatch?.contact_id) {
-        const { data: contactFromMsg } = await supabaseAdmin
-          .from("contacts")
-          .select("*")
-          .eq("id", msgMatch.contact_id)
-          .single()
-        contact = contactFromMsg
+      const msgRows = await sql`
+        SELECT contact_id FROM contact_messages
+        WHERE (${email ?? null}::text IS NOT NULL AND email = ${email ?? null}::text)
+           OR (${phone ?? null}::text IS NOT NULL AND phone = ${phone ?? null}::text)
+        LIMIT 1
+      `
+      if (msgRows[0]?.contact_id) {
+        const fromMsgRows = await sql`SELECT * FROM contacts WHERE id = ${msgRows[0].contact_id} LIMIT 1`
+        contact = (fromMsgRows[0] as Contact) ?? null
       }
     }
   }
@@ -73,74 +62,74 @@ export async function upsertContact(params: {
   let isNew = false
 
   if (contact) {
-    // Actualizar nombre/empresa y completar email/teléfono si faltaban
-    const updates: Partial<Contact> = { name }
-    if (email && !contact.email) updates.email = email
-    if (phone && !contact.phone) updates.phone = phone
-    if (company) updates.company = company
-
-    const { data, error } = await supabaseAdmin
-      .from("contacts")
-      .update(updates)
-      .eq("id", contact.id)
-      .select()
-      .single()
-    if (error) throw error
-    contact = data
+    const updated = await sql`
+      UPDATE contacts SET
+        name = ${name},
+        email = COALESCE(${email ?? null}::text, email),
+        phone = COALESCE(${phone ?? null}::text, phone),
+        company = COALESCE(${company ?? null}::text, company),
+        updated_at = NOW()
+      WHERE id = ${contact.id}
+      RETURNING *
+    `
+    contact = updated[0] as Contact
   } else {
-    const { data, error } = await supabaseAdmin
-      .from("contacts")
-      .insert({ name, email: email ?? null, phone: phone ?? null, company: company ?? null })
-      .select()
-      .single()
-    if (error) throw error
-    contact = data
+    const inserted = await sql`
+      INSERT INTO contacts (name, email, phone, company)
+      VALUES (${name}, ${email ?? null}, ${phone ?? null}, ${company ?? null})
+      RETURNING *
+    `
+    contact = inserted[0] as Contact
     isNew = true
   }
 
   if (!contact) throw new Error("Failed to create or retrieve contact")
 
-  const { error: msgError } = await supabaseAdmin
-    .from("contact_messages")
-    .insert({
-      contact_id: contact.id,
-      message,
-      origin,
-      name: name ?? null,
-      email: email ?? null,
-      phone: phone ?? null,
-      company: company ?? null,
-    })
-  if (msgError) throw msgError
+  await sql`
+    INSERT INTO contact_messages (contact_id, message, origin, name, email, phone, company)
+    VALUES (
+      ${contact.id}, ${message}, ${origin},
+      ${name ?? null}, ${email ?? null}, ${phone ?? null}, ${company ?? null}
+    )
+  `
 
   return { contact, isNew }
 }
 
 export async function getAllContacts(): Promise<ContactWithMessages[]> {
-  const { data, error } = await supabaseAdmin
-    .from("contacts")
-    .select("*, messages:contact_messages(*)")
-    .order("updated_at", { ascending: false })
-  if (error) throw error
-  return data ?? []
+  const rows = await sql`
+    SELECT c.*,
+      COALESCE(
+        json_agg(m ORDER BY m.created_at) FILTER (WHERE m.id IS NOT NULL),
+        '[]'
+      ) AS messages
+    FROM contacts c
+    LEFT JOIN contact_messages m ON m.contact_id = c.id
+    GROUP BY c.id
+    ORDER BY c.updated_at DESC
+  `
+  return rows as ContactWithMessages[]
 }
 
 export async function getContactById(id: string): Promise<ContactWithMessages | null> {
-  const { data, error } = await supabaseAdmin
-    .from("contacts")
-    .select("*, messages:contact_messages(*)")
-    .eq("id", id)
-    .single()
-  if (error) return null
-  return data
+  const rows = await sql`
+    SELECT c.*,
+      COALESCE(
+        json_agg(m ORDER BY m.created_at) FILTER (WHERE m.id IS NOT NULL),
+        '[]'
+      ) AS messages
+    FROM contacts c
+    LEFT JOIN contact_messages m ON m.contact_id = c.id
+    WHERE c.id = ${id}
+    GROUP BY c.id
+  `
+  return (rows[0] as ContactWithMessages) ?? null
 }
 
 export async function deleteContact(id: string): Promise<void> {
-  const { error } = await supabaseAdmin.from("contacts").delete().eq("id", id)
-  if (error) throw error
+  await sql`DELETE FROM contacts WHERE id = ${id}`
 }
 
 export async function deleteMessage(id: string): Promise<void> {
-  const { error } = await supabaseAdmin.from("contact_messages").delete().eq("id", id)
-  if (error) throw error
+  await sql`DELETE FROM contact_messages WHERE id = ${id}`
 }

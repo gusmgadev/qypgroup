@@ -1,14 +1,14 @@
-import { supabaseAdmin } from "../supabase"
+import { del } from "@vercel/blob"
+import { sql } from "../db"
 import type { ProjectPhoto } from "./projects"
 
 export async function getPhotosByProject(projectId: string): Promise<ProjectPhoto[]> {
-  const { data, error } = await supabaseAdmin
-    .from("project_photos")
-    .select("*")
-    .eq("project_id", projectId)
-    .order("order", { ascending: true })
-  if (error) throw error
-  return data ?? []
+  const rows = await sql`
+    SELECT * FROM project_photos
+    WHERE project_id = ${projectId}
+    ORDER BY "order" ASC
+  `
+  return rows as ProjectPhoto[]
 }
 
 export async function addPhoto(
@@ -17,17 +17,15 @@ export async function addPhoto(
   storagePath: string,
   order: number
 ): Promise<ProjectPhoto> {
-  const { data, error } = await supabaseAdmin
-    .from("project_photos")
-    .insert({ project_id: projectId, url, storage_path: storagePath, order })
-    .select()
-    .single()
-  if (error) throw error
-  return data
+  const rows = await sql`
+    INSERT INTO project_photos (project_id, url, storage_path, "order")
+    VALUES (${projectId}, ${url}, ${storagePath}, ${order})
+    RETURNING *
+  `
+  return rows[0] as ProjectPhoto
 }
 
-export async function deletePhoto(photoId: string, storagePath: string): Promise<void> {
-  await supabaseAdmin.storage.from("project-photos").remove([storagePath])
-  const { error } = await supabaseAdmin.from("project_photos").delete().eq("id", photoId)
-  if (error) throw error
+export async function deletePhoto(photoId: string, blobUrl: string): Promise<void> {
+  await del(blobUrl)
+  await sql`DELETE FROM project_photos WHERE id = ${photoId}`
 }
