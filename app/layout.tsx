@@ -7,11 +7,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-// app/layout.tsx
-verification: {
-  google: "google-site-verification=L2BxVUOE-jzEWbfEmr1R59LBwqSYMf672aQHkPG05mg"
-};
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -108,7 +103,7 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    // google: "TU_CODIGO_DE_VERIFICACION_GOOGLE",  // agregar cuando se verifique en Google Search Console
+    google: "L2BxVUOE-jzEWbfEmr1R59LBwqSYMf672aQHkPG05mg",
   },
 
   other: {
