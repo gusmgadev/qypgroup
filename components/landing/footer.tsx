@@ -124,16 +124,19 @@ export function Footer() {
               Contacto
             </h4>
             <div className="space-y-2 text-sm" style={{ color: "rgba(255,255,255,0.80)" }}>
-              <a href={`tel:${theme.contact.phone}`} className="flex items-center gap-2">
-                <Phone size={14} />
-                {theme.contact.phone}
-              </a>
+              {theme.contact.phones.map((p, i) => (
+                <a key={p} href={`tel:${p.replace(/\s|-/g, "")}`} className="flex items-center gap-2">
+                  {i === 0 && <Phone size={14} />}
+                  {i !== 0 && <span className="w-[14px]" />}
+                  {p}
+                </a>
+              ))}
               <a href={`mailto:${theme.contact.email}`} className="flex items-center gap-2">
                 <Mail size={14} />
                 {theme.contact.email}
               </a>
               <a
-                href={`https://wa.me/${theme.contact.whatsapp}`}
+                href={`https://wa.me/${theme.contact.whatsapp[0]}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"

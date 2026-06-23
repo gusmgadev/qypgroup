@@ -171,8 +171,17 @@ export function Contact() {
                 <Phone size={16} color="#FFFFFF" />
               </div>
               <div>
-                <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>Teléfono</p>
-                <p className="text-sm font-medium" style={{ color: "#FFFFFF" }}>{theme.contact.phone}</p>
+                <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>Teléfono / WhatsApp</p>
+                {theme.contact.phones.map((p) => (
+                  <a
+                    key={p}
+                    href={`tel:${p.replace(/\s|-/g, "")}`}
+                    className="block text-sm font-medium hover:underline"
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    {p}
+                  </a>
+                ))}
               </div>
             </div>
 

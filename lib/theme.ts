@@ -331,9 +331,9 @@ services: [
       { icon: "Star",   line1: "Compromiso con",  line2: "la calidad" },
       { icon: "MapPin", line1: "Cobertura en",    line2: "múltiples regiones" },
     ],
-    phone:    "54 297 439-5832",
+    phones:   ["297 401-4478", "297 435-7772"],
     email:    "info@qypenterprisegroup.com",
-    whatsapp: "54 297 439-5832",          // sin + ni espacios — formato para wa.me/
+    whatsapp: ["5492974014478", "5492974357772"],  // formato para wa.me/ — sin + ni espacios
     address:  "Rada Tilly, Chubut, Argentina",
   },
 
