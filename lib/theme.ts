@@ -159,7 +159,7 @@ services: [
       },
       {
         title: "Rental",
-        description: "Contamos con una flota completa lista para operar: automóviles, camionetas 4x4, camiones (chupe, volcadores, porta contenedores), camiones tractores con semiplayo, tanque y tolva, maquinaria vial, vehículos especiales y contenedores de 6 y 12 metros.",
+        description: "Contamos con una flota completa lista para operar: automóviles, camionetas 4x4, camiones (chupa, volcadores, porta contenedores), camiones tractores con semiplayo, tanque y tolva, maquinaria vial, vehículos especiales y contenedores de 6 y 12 metros.",
         icon: "package",
         image: "/images/servicios/rental.jpg",
         details: [
