@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "QYP Group | Obras, Servicios y Rental — Oil & Gas, Minería, Pesca",
+    default: "QYP Group | Obras, Servicios y Rental — Oil & Gas",
     template: "%s | QYP Group",
   },
   description:
-    "QYP Group provee soluciones integrales para la industria petrolera, minera y gasífera: obras civiles e industriales, servicios de campo, rental de equipos y maquinaria. Comodoro Rivadavia, Chubut, Argentina.",
+    "Empresa de servicios para Oil & Gas y Minería en la Patagonia. Obras civiles, servicios de campo y rental de equipos. Rada Tilly, Chubut, Argentina.",
 
   keywords: [
     "Oil Gas Argentina",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "QYP Group",
     title: "QYP Group | Obras, Servicios y Rental — Oil & Gas y Minería",
     description:
-      "Proveemos soluciones para las necesidades de la industria petrolera, minera y gasífera. Obras civiles, servicios de campo y rental de equipos en la Patagonia argentina.",
+      "Obras civiles, servicios de campo y rental de equipos para Oil & Gas y Minería en Patagonia. Contactanos sin compromiso.",
     images: [
       {
         url: "/images/logos/og-logo.png",
