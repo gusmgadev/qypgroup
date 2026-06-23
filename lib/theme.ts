@@ -166,7 +166,7 @@ services: [
           "Automoviles",
           "Camionetas 4x4",
           "Camiones",
-          " * Chupe",
+          " * Chupa",
           " * Porta Contenedores",
           " * Volcadores",
           "Camiones Tractores",
