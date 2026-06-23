@@ -57,8 +57,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/logos/og-logo.png",
-        width: 1200,
-        height: 630,
+        width: 1659,
+        height: 948,
         alt: "QYP Group — Servicios para Oil & Gas y Minería en Patagonia",
       },
     ],
