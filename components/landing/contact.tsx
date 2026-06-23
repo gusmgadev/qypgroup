@@ -172,10 +172,12 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-xs" style={{ color: "rgba(203,197,138,0.70)" }}>Teléfono / WhatsApp</p>
-                {theme.contact.phones.map((p) => (
+                {theme.contact.phones.map((p, i) => (
                   <a
                     key={p}
-                    href={`tel:${p.replace(/\s|-/g, "")}`}
+                    href={`https://wa.me/${theme.contact.whatsapp[i]}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block text-sm font-medium hover:underline"
                     style={{ color: "#FFFFFF" }}
                   >

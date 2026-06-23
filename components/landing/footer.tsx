@@ -125,7 +125,7 @@ export function Footer() {
             </h4>
             <div className="space-y-2 text-sm" style={{ color: "rgba(255,255,255,0.80)" }}>
               {theme.contact.phones.map((p, i) => (
-                <a key={p} href={`tel:${p.replace(/\s|-/g, "")}`} className="flex items-center gap-2">
+                <a key={p} href={`https://wa.me/${theme.contact.whatsapp[i]}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   {i === 0 && <Phone size={14} />}
                   {i !== 0 && <span className="w-[14px]" />}
                   {p}
