@@ -111,12 +111,11 @@ export const theme = {
     },
 
     images: [
-      "/images/hero/fondo hero.jpg",
-      "/images/hero/hero-1.jpg",
-      "/images/hero/hero-2.jpg",
-      "/images/hero/hero-3.jpg",
-      "/images/hero/hero-4.jpg",
-      
+      { src: "/images/hero/fondo hero.jpg", alt: "Obras civiles e industriales para Oil & Gas en Patagonia — QYP Group" },
+      { src: "/images/hero/hero-1.jpg",     alt: "Equipos y maquinaria para yacimientos petroleros en Chubut" },
+      { src: "/images/hero/hero-2.jpg",     alt: "Servicios industriales para minería y Oil & Gas en Argentina" },
+      { src: "/images/hero/hero-3.jpg",     alt: "Construcción de locaciones petroleras en la Patagonia" },
+      { src: "/images/hero/hero-4.jpg",     alt: "Rental de camionetas 4x4 y maquinaria vial para Oil & Gas" },
     ],
 
     pills: [

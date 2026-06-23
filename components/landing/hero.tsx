@@ -44,7 +44,7 @@ export function Hero() {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="absolute inset-0">
-        {theme.hero.images.map((src, index) => (
+        {theme.hero.images.map((image, index) => (
           <div
             key={index}
             className="absolute inset-0 transition-opacity duration-[1.5s]"
@@ -53,8 +53,9 @@ export function Hero() {
             }}
           >
             <img
-              src={src}
-              alt={`Hero ${index + 1}`}
+              src={image.src}
+              alt={image.alt}
+              loading={index === 0 ? "eager" : "lazy"}
               className="w-full h-full object-cover"
               style={theme.hero.blurAmount !== "0px" ? {
                 filter: `blur(${theme.hero.blurAmount}) brightness(0.9)`,

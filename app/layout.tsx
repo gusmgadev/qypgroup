@@ -56,8 +56,7 @@ export const metadata: Metadata = {
       "Proveemos soluciones para las necesidades de la industria petrolera, minera y gasífera. Obras civiles, servicios de campo y rental de equipos en la Patagonia argentina.",
     images: [
       {
-        // Reemplazar por una imagen 1200x630 diseñada para redes sociales cuando esté lista
-        url: "/images/hero/hero-1.jpg",
+        url: "/images/logos/og-logo.png",
         width: 1200,
         height: 630,
         alt: "QYP Group — Servicios para Oil & Gas y Minería en Patagonia",
@@ -70,7 +69,7 @@ export const metadata: Metadata = {
     title: "QYP Group | Obras, Servicios y Rental — Oil & Gas y Minería",
     description:
       "Soluciones integrales para la industria petrolera, minera y gasífera en la Patagonia. Obras, servicios de campo y rental de equipos.",
-    images: ["/images/hero/hero-1.jpg"],
+    images: ["/images/logos/og-logo.png"],
   },
 
   robots: {
@@ -89,15 +88,30 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
 
-  // Agregar favicon.ico y apple-touch-icon.png en /public cuando estén disponibles
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/images/logos/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/logos/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/logos/logo.ico",           type: "image/x-icon" },
+    ],
+    shortcut: "/images/logos/logo.ico",
+    apple:    "/images/logos/apple-touch-icon.png",
+    other: [
+      { rel: "android-chrome", url: "/images/logos/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "android-chrome", url: "/images/logos/android-chrome-512x512.png", sizes: "512x512" },
+    ],
   },
 
   verification: {
     // google: "TU_CODIGO_DE_VERIFICACION_GOOGLE",  // agregar cuando se verifique en Google Search Console
+  },
+
+  other: {
+    "geo.region":      "AR-U",
+    "geo.placename":   "Rada Tilly, Chubut, Argentina",
+    "geo.position":    "-45.9179;-67.5481",
+    "ICBM":            "-45.9179, -67.5481",
+    "theme-color":     "#2A2510",
   },
 };
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { getVisibleProjects } from "../../lib/db/projects"
 import ProjectCard from "../../components/trabajos/project-card"
 import { Navbar } from "../../components/landing/navbar"
@@ -5,6 +6,21 @@ import { Footer } from "../../components/landing/footer"
 import { theme } from "../../lib/theme"
 
 export const dynamic = "force-dynamic"
+
+export const metadata: Metadata = {
+  title: "Proyectos Realizados",
+  description:
+    "Conocé los trabajos ejecutados por QYP Group en el sector petrolero, minero y gasífero de la Patagonia: obras civiles, gasoductos, locaciones, rental de equipos y más.",
+  openGraph: {
+    title: "Proyectos Realizados | QYP Group",
+    description:
+      "Trabajos ejecutados por QYP Group en Oil & Gas y Minería: obras, servicios y rental en la Patagonia argentina.",
+    images: [{ url: "/images/hero/hero-4.jpg", width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: "https://www.qypenterprisegroup.com/trabajos",
+  },
+}
 
 export default async function TrabajosPage() {
   const projects = await getVisibleProjects()
