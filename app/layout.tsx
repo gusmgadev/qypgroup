@@ -7,6 +7,11 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+// app/layout.tsx
+verification: {
+  google: "google-site-verification=L2BxVUOE-jzEWbfEmr1R59LBwqSYMf672aQHkPG05mg"
+};
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
