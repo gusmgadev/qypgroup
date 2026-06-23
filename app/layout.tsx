@@ -56,9 +56,9 @@ export const metadata: Metadata = {
       "Obras civiles, servicios de campo y rental de equipos para Oil & Gas y Minería en Patagonia. Contactanos sin compromiso.",
     images: [
       {
-        url: "/images/logos/og-logo.png",
-        width: 1659,
-        height: 948,
+        url: "/images/logos/og-logo.jpg",
+        width: 1200,
+        height: 630,
         alt: "QYP Group — Servicios para Oil & Gas y Minería en Patagonia",
       },
     ],
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "QYP Group | Obras, Servicios y Rental — Oil & Gas y Minería",
     description:
       "Soluciones integrales para la industria petrolera, minera y gasífera en la Patagonia. Obras, servicios de campo y rental de equipos.",
-    images: ["/images/logos/og-logo.png"],
+    images: ["/images/logos/og-logo.jpg"],
   },
 
   robots: {
